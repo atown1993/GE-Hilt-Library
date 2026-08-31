@@ -38,7 +38,7 @@ captures/
 NOTICE                 provenance statement (all data firsthand)
 CONTRIBUTORS.md        everyone credited for a firsthand capture
 LICENSE                MIT — covers the tools/code
-LICENSE-DATA           CC BY 4.0 — covers the captures and measurements
+LICENSE-DATA           CC0 1.0 — public-domain dedication for the captures/measurements
 ```
 
 Capture files are **DSView `.dsl`** format (DreamSource Lab's native format — a
@@ -65,8 +65,7 @@ maintainer's working catalog.
 
 ## Licensing
 
-- **Captures and measurements:** [CC BY 4.0](LICENSE-DATA) — reuse freely with
-  attribution.
+- **Captures and measurements:** [CC0 1.0](LICENSE-DATA) — public domain, use freely, no attribution required.
 - **Tools and code:** [MIT](LICENSE).
 
 ## Not affiliated with Disney / Lucasfilm

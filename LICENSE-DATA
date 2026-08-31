@@ -1,18 +1,18 @@
-Creative Commons Attribution 4.0 International (CC BY 4.0)
-=========================================================
+CC0 1.0 Universal (CC0 1.0) — Public Domain Dedication
+======================================================
 
 The CAPTURE DATA in this repository — the .dsl capture files and the decoded /
-tabulated measurements derived from them — is licensed under the Creative
-Commons Attribution 4.0 International License (CC BY 4.0).
+tabulated measurements derived from them — is released into the public domain
+under Creative Commons CC0 1.0 Universal.
 
-You are free to share and adapt this data for any purpose, including
-commercially, provided you give appropriate credit to the GE-Hilt-Library
-project and its contributors, link to this license, and indicate if changes
-were made.
+To the extent possible under law, the contributors to GE-Hilt-Library have
+waived all copyright and related or neighboring rights to this capture data.
+You can copy, modify, distribute, and use the data, even for commercial
+purposes, all without asking permission and with no attribution requirement.
 
-Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
-Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Human-readable summary: https://creativecommons.org/publicdomain/zero/1.0/
 
-NOTE ON SCOPE: this data license covers the captures and measurements only. The
+NOTE ON SCOPE: this dedication covers the captures and measurements only. The
 software in this repository (decoder and analysis tools) is licensed separately
 under the MIT License — see LICENSE.
