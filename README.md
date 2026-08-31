@@ -5,69 +5,83 @@ captures** — raw logic-analyzer recordings of how these hilts actually behave,
 electrically, so builders don't have to start from zero or own every hilt to
 work with one.
 
-Everything here was measured directly from a physical hilt. Every claim is
-backed by a capture file in this repo. See [`NOTICE`](NOTICE) for the full
-provenance statement.
+Everything here was measured directly from a physical hilt with a stock Galaxy's
+Edge blade. Every claim is backed by a capture file in this repo. See
+[`NOTICE`](NOTICE) for the full provenance statement.
 
 ## What's captured
 
-Galaxy's Edge hilts drive their blades over a wire protocol, and the blade
-itself lights up as a set of addressable segments. This catalog covers two
-capture targets:
+Galaxy's Edge hilts drive their blades over a wire protocol, and the blade itself
+lights up as a set of addressable segments. This catalog covers two capture
+targets:
 
 1. **Hilt → blade protocol (present today).** The single-wire, pulse-width
    command stream the hilt sends: ignite, refresh, clash, extinguish, and the
-   color/mode encoding. This is the bulk of the current catalog — Savi's
-   Workshop hilts across all eight kyber colors, plus a growing set of Legacy
-   character hilts.
+   color/mode encoding. This is the bulk of the current catalog — Savi's Workshop
+   hilts across all eight kyber colors, plus a growing set of Legacy character
+   hilts.
 
-2. **Blade-internal signals (a target we want, not yet populated).** A
-   multi-channel view *inside* the blade drive: the individual blade
-   segment-enable lines and the RGB channel gates alongside the data line.
-   This is what lets a builder reproduce the exact light-up/fade wave. We have
-   the capture rig and the analysis tooling for it; we're actively looking for
-   contributors and captures here.
+2. **Blade-internal signals (a target we want, more captures welcome).** A
+   multi-channel view *inside* the blade drive — the individual segment-enable
+   lines and the RGB channel gates alongside the data line — which is what lets a
+   builder reproduce the exact light-up/fade wave.
+
+## Start here
+
+- **The protocol, in full:** [`CATALOG.md`](CATALOG.md) — wire format, byte
+  structure, color rendering, cadence, clashes, and per-hilt behavior.
+- **The per-hilt data:** [`data/hilt-timings.csv`](data/hilt-timings.csv) — bytes
+  and measured timings, one row per hilt/color. Browsable and sortable under
+  [`docs/`](docs/) (GitHub Pages) with a one-click CSV download.
+- **The captures:** [`captures/INDEX.md`](captures/INDEX.md) lists all of them.
 
 ## Repository layout
 
 ```
+CATALOG.md              the protocol catalog — how hilts drive blades, in full
 captures/
-  savis/<color>/       Savi's Workshop hilts, by kyber color
-  legacy/<hilt>/       Legacy character hilts, by character
-  validation/          rig-validation / channel-mapping reference captures
-NOTICE                 provenance statement (all data firsthand)
-CONTRIBUTORS.md        everyone credited for a firsthand capture
-LICENSE                MIT — covers the tools/code
-LICENSE-DATA           CC0 1.0 — public-domain dedication for the captures/measurements
+  savis/<color>/        Savi's Workshop hilts, by kyber color
+  legacy/<hilt>/        Legacy character hilts, by character
+  validation/           rig-validation / channel-mapping captures
+  INDEX.md              generated index of every capture
+data/hilt-timings.csv   per-hilt/per-color bytes + measured timings (source of truth)
+docs/                   browsable, sortable Pages table + CSV download
+tools/                  decode_dsl.py (protocol decoder) + analyze_timings.py
+scripts/                regenerate docs/ and the capture index
+guides/                 Blade-Types.md · DSLogic-Setup.md (capture procedure)
+SUBMISSION-TEMPLATE.md  what to send when you contribute a capture
+NOTICE                  provenance statement (all data firsthand)
+CONTRIBUTORS.md         everyone credited for a firsthand capture
+LICENSE / LICENSE-DATA  MIT (code) / CC0 1.0 (captures + measurements)
 ```
 
 Capture files are **DSView `.dsl`** format (DreamSource Lab's native format — a
 ZIP archive holding a header plus bit-packed per-channel sample data). Open them
-in the free [DSView](https://www.dreamsourcelab.com/) application for visual
-inspection. **Timings reference:** `data/hilt-timings.csv` is the per-hilt/per-color table of protocol bytes and measured timings — the source of truth. A browsable, sortable version renders from it under `docs/` (GitHub Pages) with a one-click CSV download. The protocol catalog — how the hilts drive the blades, in full — is in
-[`CATALOG.md`](CATALOG.md). A protocol decoder is being finalized and will land as the
-clean-room build completes.
+in the free [DSView](https://www.dreamsourcelab.com/) app, or decode them with
+[`tools/decode_dsl.py`](tools/decode_dsl.py) (Python 3, no dependencies).
 
 ## Contributing — you don't need to decode anything
 
-The whole point is to catalog hilts no one person owns. The bar to contribute is
+The whole point is to catalog hilts no one person owns, and the bar is
 deliberately low:
 
-- You capture your hilt best-effort with whatever logic analyzer you have.
-- You **don't** have to arrange your probes a specific way, match our channel
-  order, or decode the protocol. Send the raw file plus a few lines about what
-  you probed and what analyzer you used.
-- The maintainer normalizes it — identifies which channel is the data line,
-  which are segments, which are gates — decodes it, adds it to the catalog, and
-  credits you in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
+- Capture your hilt best-effort with **a stock GE blade** and whatever logic
+  analyzer you have. You **don't** have to arrange your probes a specific way,
+  match a channel order, or decode anything.
+- Fill out [`SUBMISSION-TEMPLATE.md`](SUBMISSION-TEMPLATE.md) — your channel map,
+  what you saw on the blade, and which hilt — and post it with your raw capture
+  file in the Discord submission thread.
+- The maintainer normalizes it, decodes it, adds it to the catalog, and credits
+  you in [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
 
-A step-by-step submission guide (`CONTRIBUTING.md` / `SUBMIT.md`) and the Discord
-submission thread are set up at public launch. Until then, this repo is the
-maintainer's working catalog.
+New to logic-analyzer capture? [`guides/DSLogic-Setup.md`](guides/DSLogic-Setup.md)
+is a step-by-step procedure written for someone with no prior experience. Until
+public launch, this repo is the maintainer's working catalog.
 
 ## Licensing
 
-- **Captures and measurements:** [CC0 1.0](LICENSE-DATA) — public domain, use freely, no attribution required.
+- **Captures and measurements:** [CC0 1.0](LICENSE-DATA) — public domain, use
+  freely, no attribution required.
 - **Tools and code:** [MIT](LICENSE).
 
 ## Not affiliated with Disney / Lucasfilm
