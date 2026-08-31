@@ -44,8 +44,7 @@ LICENSE-DATA           CC BY 4.0 — covers the captures and measurements
 Capture files are **DSView `.dsl`** format (DreamSource Lab's native format — a
 ZIP archive holding a header plus bit-packed per-channel sample data). Open them
 in the free [DSView](https://www.dreamsourcelab.com/) application for visual
-inspection. A decoder and a generated, sortable catalog index are being
-finalized and will land here as the clean-room build completes.
+inspection. **Timings reference:** `data/hilt-timings.csv` is the per-hilt/per-color table of protocol bytes and measured timings — the source of truth. A browsable, sortable version renders from it under `docs/` (GitHub Pages) with a one-click CSV download. A protocol decoder and the full findings write-up are being finalized and will land as the clean-room build completes.
 
 ## Contributing — you don't need to decode anything
 
