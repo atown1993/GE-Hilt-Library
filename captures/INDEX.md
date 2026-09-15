@@ -1,6 +1,6 @@
 # Capture Index
 
-109 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+116 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -239,6 +239,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-shin-fullcycle-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-fullcycle-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-shin-idle-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-idle-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-shin-steadyburn-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-steadyburn-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
+
+### Skywalker Reforged  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-skywalker-reforged-8ch-ignite-clash-ext-200kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-8ch-ignite-clash-ext-200kHz-2026-09-15.dsl) | 200kHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-8ch-ignite-ext-1MHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-8ch-ignite-ext-1MHz-2026-09-15.dsl) | 1MHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-8ch-ignite-ext-freerun-1MHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-8ch-ignite-ext-freerun-1MHz-2026-09-15.dsl) | 1MHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-clashcycle-12plus-200kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-clashcycle-12plus-200kHz-2026-09-15.dsl) | 200kHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-gatepwm-10MHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-gatepwm-10MHz-2026-09-15.dsl) | 10MHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-idle-200kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-idle-200kHz-2026-09-15.dsl) | 200kHz | 2026-09-15 |
+| [`legacy-skywalker-reforged-steadyburn-100kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-steadyburn-100kHz-2026-09-15.dsl) | 100kHz | 2026-09-15 |
 
 ### Vader  ·  2 capture(s)
 

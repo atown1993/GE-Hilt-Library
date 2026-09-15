@@ -249,18 +249,36 @@ Steps:
 
 ### 6.3 What to capture per hilt for the catalog
 
-What makes a useful contribution, with a stock blade + the 10 kΩ pull-up:
+Two tiers — capture as much as you can; more is genuinely more useful, and a hilt is
+easiest to characterize while it's in front of you (re-capturing later means setting the
+rig back up).
 
-- **One full-cycle reference per hilt** — ignite → steady state → optional clash →
-  extinguish, 200 kHz, ~20 s.
-- **One multi-event capture** per available color/character — same wiring, longer
-  duration, deliberately fire several clashes during the on-state, so refresh +
-  clash + extinguish bytes all land in one trace.
+**Minimum useful contribution** (stock blade + 10 kΩ pull-up):
 
-**About clashes:** hilts produce a variety of clash sounds, but the wire byte is
-constant — every clash decodes to `0xC0`. Sound variety is generated locally by the
-hilt MCU; nothing to differentiate on the wire. Multi-clash captures are still useful
-for stress-testing the refresh cadence, just not for differentiating clash sub-types.
+- **One full-cycle reference** — ignite → steady state → optional clash → extinguish,
+  200 kHz, ~20 s. This alone gets a hilt into the catalog.
+
+**Full characterization** (the complete set — do all of these if you can; each is cheap
+and captures something the others don't):
+
+1. **Triggered ignite arc** — 1 MHz, ~8 s buffer, DATA falling-edge trigger. Ignite →
+   burn → extinguish. Best resolution for ignition/extinguish timings + command bytes.
+2. **Free-run ignite arc** — 1 MHz, full ~8 s buffer, **no trigger**. Start recording with
+   the blade dark, then ignite → hold → extinguish inside the window. Catches the whole
+   ignite/extinguish at 1 MHz plus any line activity before ignition that a trigger clips.
+3. **Full clash arc** — 200 kHz, 10–20 s. Ignite → burn → a few gentle clashes → extinguish.
+4. **Clash-cycle** — 200 kHz, 12+ well-spaced strikes. Reveals the clash pattern
+   (1:1 vs cycling vs occasional doubles).
+5. **Steady-burn** — 200 kHz (drop to 100 kHz for a longer window), 60–90 s, no clashes.
+   Pins the refresh cadence — a per-hilt fingerprint — at high sample count.
+6. **Idle** — 200 kHz or Instant, blade dark. The off-state baseline.
+7. **Gate PWM** — 10 MHz, ~0.5–1 s, blade lit steady. Measures the colour gate's PWM
+   carrier frequency.
+
+**About clashes:** hilts produce a variety of clash sounds, but the wire byte is constant —
+every clash decodes to `0xC0`. Sound variety is generated locally by the hilt MCU; nothing to
+differentiate on the wire. Multi-clash captures are still useful for pinning the refresh
+cadence and revealing the clash pattern, just not for differentiating clash sub-types.
 
 ---
 
