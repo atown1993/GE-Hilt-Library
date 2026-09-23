@@ -105,17 +105,17 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-devon-8ch-ignite-clash-ext-200kHz-2026-08-28.dsl`](legacy/devon/legacy-devon-8ch-ignite-clash-ext-200kHz-2026-08-28.dsl) | 200kHz | 2026-08-28 |
 | [`legacy-devon-ignite-clash-ext-200kHz-2026-05-08.dsl`](legacy/devon/legacy-devon-ignite-clash-ext-200kHz-2026-05-08.dsl) | 200kHz | 2026-05-08 |
 
-### Ezra Second  ·  7 capture(s)
+### Ezras Second  ·  7 capture(s)
 
 | Capture file | Rate | Date |
 |---|---|---|
-| [`legacy-ezra-second-8ch-ignite-clash-ext-200kHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-8ch-ignite-clash-ext-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
-| [`legacy-ezra-second-8ch-ignite-ext-1MHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-8ch-ignite-ext-1MHz-2026-09-22.dsl) | 1MHz | 2026-09-22 |
-| [`legacy-ezra-second-8ch-ignite-ext-freerun-1MHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-8ch-ignite-ext-freerun-1MHz-2026-09-22.dsl) | 1MHz | 2026-09-22 |
-| [`legacy-ezra-second-clashcycle-12plus-200kHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-clashcycle-12plus-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
-| [`legacy-ezra-second-gatepwm-10MHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-gatepwm-10MHz-2026-09-22.dsl) | 10MHz | 2026-09-22 |
-| [`legacy-ezra-second-idle-200kHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-idle-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
-| [`legacy-ezra-second-steadyburn-100kHz-2026-09-22.dsl`](legacy/ezra-second/legacy-ezra-second-steadyburn-100kHz-2026-09-22.dsl) | 100kHz | 2026-09-22 |
+| [`legacy-ezras-second-8ch-ignite-clash-ext-200kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-8ch-ignite-clash-ext-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
+| [`legacy-ezras-second-8ch-ignite-ext-1MHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-8ch-ignite-ext-1MHz-2026-09-22.dsl) | 1MHz | 2026-09-22 |
+| [`legacy-ezras-second-8ch-ignite-ext-freerun-1MHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-8ch-ignite-ext-freerun-1MHz-2026-09-22.dsl) | 1MHz | 2026-09-22 |
+| [`legacy-ezras-second-clashcycle-12plus-200kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-clashcycle-12plus-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
+| [`legacy-ezras-second-gatepwm-10MHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-gatepwm-10MHz-2026-09-22.dsl) | 10MHz | 2026-09-22 |
+| [`legacy-ezras-second-idle-200kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-idle-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
+| [`legacy-ezras-second-steadyburn-100kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-steadyburn-100kHz-2026-09-22.dsl) | 100kHz | 2026-09-22 |
 
 ### Kanan  ·  4 capture(s)
 

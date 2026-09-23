@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, Ezra Bridger (second saber), and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, Ezra's Second (Ezra Bridger), and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -99,9 +99,9 @@ The 8 kyber-color indexes (0–7) are complete, but the Savi *opcode family* its
 open-ended: it also carries higher, character-specific indexes on Legacy-character
 hilts that emit it — for example **Rey Skywalker = Savi-family idx 11 (`0xAB`)**,
 rendering yellow. Rey's yellow at idx 11 is a different index than Savi kyber yellow
-(`0xA3` = idx 3): a per-character slot, not a raw color code. **Ezra Bridger's second
-(green) saber = Savi-family idx 12 (`0xAC`)** — not the Legacy idx-6 green (`0xB6`) that
-Qui-Gon, Kit Fisto and Saesee Tiin share.
+(`0xA3` = idx 3): a per-character slot, not a raw color code. **Ezra's Second (Ezra
+Bridger's second saber) = Savi-family idx 12 (`0xAC`)**, rendering green — not the Legacy
+idx-6 green (`0xB6`) that Qui-Gon, Kit Fisto and Saesee Tiin use.
 
 ### Color low-nibble table — Legacy family (`0xBX`)
 
@@ -234,8 +234,8 @@ tracks the **physical hilt platform**, not the opcode family:
 - **Legacy character hilts:** ~1005–1013 ms across current-generation hilts.
 
 Rey is the tell: she emits the *Savi* opcode family (`0xAB`) yet refreshes at
-~1005 ms like the Legacy hilts, because she is a Legacy-platform hilt. Ezra Bridger
-(second saber) repeats it: Savi `0xAC`, refreshing at 1008.95 ms (n=81). Some hilts
+~1005 ms like the Legacy hilts, because she is a Legacy-platform hilt. Ezra's Second
+also emits the Savi family (`0xAC`) and refreshes at 1009.43 ms (n=81). Some hilts
 hold an extremely tight clock — Vader measures 1012.21 ms with a standard deviation
 of 0.11 ms across 40 intervals, the tightest in the set, usable as a
 hilt-generation fingerprint.
@@ -269,7 +269,7 @@ visible flash count matches the byte count:
 | Hilt | Clash pattern |
 |------|---------------|
 | Savi (all) | 1 byte per strike |
-| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra Bridger (second saber) | 1:1 single |
+| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second | 1:1 single |
 | **Maul staff LONG halves** | **Cycling (1, 3, 1, 4), period 4, repeats indefinitely** — phase does not reset per ignition |
 | **Maul staff SHORT half** | 1:1 single — same bytes as the longs, different clash firmware |
 | **Qui-Gon Jinn** | Random/intermittent double (~30–48%, session-variable), doubles ~135–190 ms apart |
@@ -482,12 +482,10 @@ ignition, extinguish-delay, extinguish, and refresh cadence — are in
   the otherwise-universal "extinguish family matches the active refresh family" rule —
   Agen Kolar (same idx-2 blue wire identity) and Devon both extinguish cleanly with
   Legacy `0x52`, so the swap is a Kanan-specific trait.
-- **Ezra's extinguish index swap.** Ezra Bridger's second saber runs steady on Savi
-  `0xAC` (idx 12, green) but extinguishes with `0x40` — Savi idx 0 — instead of `0x4C`.
-  Reproduced on 5 of 5 arcs, regardless of where in the refresh cycle the button is
-  pressed. Unlike Kanan's it stays in the same opcode family and changes only the
-  index. No visible effect on a stock blade (normal extinguish wave, ExtDelay ~290 ms);
-  how an upgraded blade renders it is untested.
+- **Ezra's Second extinguish byte.** Ezra's Second runs steady on Savi `0xAC` (idx 12,
+  green) and extinguishes with `0x40` (Savi idx 0) instead of `0x4C` — on every arc in the
+  catalog set (4/4). On a stock blade the extinguish looks normal: each segment dims then
+  goes out, tip first — the same stepped segment fade other hilts show.
 - **Baylan blade-detection lockout.** The Baylan hilt refuses to drive the protocol
   at all when paired with a non-original blade — the wire stays essentially silent.
   With its own keyed blade it runs normally. This is hilt-side blade detection gating
