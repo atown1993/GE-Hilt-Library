@@ -286,9 +286,11 @@ apart (a tight pair) with later bytes spaced wider.
 **Clash-flash color is a delayed gate pulse, not a brightness flash.** About 75 ms
 *after* the `0xC0`, one or more otherwise-off gates rise for ~35–40 ms, then fall —
 a hue shift while the segments stay fully on. On the Legacy hilts the pulse depends
-on the color index. Blue and green hilts (Ben Solo idx 9, Ezra's Second idx 12) cut
-their primary gate off and drive **Red+Green full** — electrically yellow; at the
-bench it read as **white** on Ben Solo's blue blade and **yellow** on Ezra's green. Red hilts
+on the color index. Blue and green hilts flash **Red+Green full with Blue off** —
+a blue hilt (Ben Solo idx 9) drops its own gate for the flash, a green hilt (Ezra's
+Second idx 12, Kit Fisto, Saesee Tiin) keeps green and adds full red — electrically
+yellow; at the bench it read as **white** on Ben Solo's blue blade and **yellow** on
+Ezra's green. Red hilts
 (Vader and Sidious, idx 7) keep their red gate on and **add Green at 25% duty**
 for 33–80 ms — a lower-energy yellow-amber flash, seen as yellow at the bench, not
 white. So the flash is built relative to the steady color, not one fixed drive. On the Savi crystals the added color is per-crystal-slot specific (a
