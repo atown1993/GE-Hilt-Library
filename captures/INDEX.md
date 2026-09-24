@@ -1,6 +1,6 @@
 # Capture Index
 
-123 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+130 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -95,6 +95,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-baylan-boxset-steadyburn-200kHz-2026-08-22.dsl`](legacy/baylan/legacy-baylan-boxset-steadyburn-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-baylan-boxset-steadyburn-200kHz-2026-08-29.dsl`](legacy/baylan/legacy-baylan-boxset-steadyburn-200kHz-2026-08-29.dsl) | 200kHz | 2026-08-29 |
 | [`legacy-baylan-ignite-clash-ext-200kHz-2026-05-08.dsl`](legacy/baylan/legacy-baylan-ignite-clash-ext-200kHz-2026-05-08.dsl) | 200kHz | 2026-05-08 |
+
+### Bensolo  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-bensolo-8ch-ignite-clash-ext-200kHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-8ch-ignite-clash-ext-200kHz-2026-09-23.dsl) | 200kHz | 2026-09-23 |
+| [`legacy-bensolo-8ch-ignite-ext-1MHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-8ch-ignite-ext-1MHz-2026-09-23.dsl) | 1MHz | 2026-09-23 |
+| [`legacy-bensolo-8ch-ignite-ext-freerun-1MHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-8ch-ignite-ext-freerun-1MHz-2026-09-23.dsl) | 1MHz | 2026-09-23 |
+| [`legacy-bensolo-clashcycle-12plus-200kHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-clashcycle-12plus-200kHz-2026-09-23.dsl) | 200kHz | 2026-09-23 |
+| [`legacy-bensolo-gatepwm-10MHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-gatepwm-10MHz-2026-09-23.dsl) | 10MHz | 2026-09-23 |
+| [`legacy-bensolo-idle-200kHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-idle-200kHz-2026-09-23.dsl) | 200kHz | 2026-09-23 |
+| [`legacy-bensolo-steadyburn-100kHz-2026-09-23.dsl`](legacy/bensolo/legacy-bensolo-steadyburn-100kHz-2026-09-23.dsl) | 100kHz | 2026-09-23 |
 
 ### Devon  ·  4 capture(s)
 
