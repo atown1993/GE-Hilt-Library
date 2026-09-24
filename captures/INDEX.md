@@ -1,6 +1,6 @@
 # Capture Index
 
-130 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+137 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -263,6 +263,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-shin-fullcycle-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-fullcycle-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-shin-idle-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-idle-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-shin-steadyburn-200kHz-2026-08-22.dsl`](legacy/shin/legacy-shin-steadyburn-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
+
+### Sidious  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-sidious-8ch-ignite-clash-ext-200kHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-8ch-ignite-clash-ext-200kHz-2026-09-24.dsl) | 200kHz | 2026-09-24 |
+| [`legacy-sidious-8ch-ignite-ext-1MHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-8ch-ignite-ext-1MHz-2026-09-24.dsl) | 1MHz | 2026-09-24 |
+| [`legacy-sidious-8ch-ignite-ext-freerun-1MHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-8ch-ignite-ext-freerun-1MHz-2026-09-24.dsl) | 1MHz | 2026-09-24 |
+| [`legacy-sidious-clashcycle-12plus-200kHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-clashcycle-12plus-200kHz-2026-09-24.dsl) | 200kHz | 2026-09-24 |
+| [`legacy-sidious-gatepwm-10MHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-gatepwm-10MHz-2026-09-24.dsl) | 10MHz | 2026-09-24 |
+| [`legacy-sidious-idle-200kHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-idle-200kHz-2026-09-24.dsl) | 200kHz | 2026-09-24 |
+| [`legacy-sidious-steadyburn-100kHz-2026-09-24.dsl`](legacy/sidious/legacy-sidious-steadyburn-100kHz-2026-09-24.dsl) | 100kHz | 2026-09-24 |
 
 ### Skywalker Reforged  ·  7 capture(s)
 

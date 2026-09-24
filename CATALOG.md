@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, Ezra's Second (Ezra Bridger), Ben Solo, and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -117,7 +117,7 @@ different hilts.
 | `0xB4` | Red (Cal Kestis variant) | Cal Kestis |
 | `0xB5` | White | Cal Kestis |
 | `0xB6` | Green | Qui-Gon Jinn, Kit Fisto, Saesee Tiin |
-| `0xB7` | Red (clean, no flicker) | Darth Vader |
+| `0xB7` | Red (clean, no flicker) | Darth Vader, Darth Sidious |
 | `0xB8` | "Blood red" (deeper crimson) | Maul (both staff halves) |
 | `0xB9` | Blue | Obi-Wan Kenobi (2026 release), Ben Solo |
 | `0xBA` | Orange | Shin Hati, Baylan Skoll |
@@ -144,8 +144,9 @@ the Legacy side, Kit Fisto and Saesee Tiin (both idx-6 green) are byte- and
 timing-identical to Qui-Gon; Agen Kolar (idx-2 blue) matches Kanan and Devon. The
 hilt derives a single color index from the crystal and drives the blade with that
 index's bytes; the character is rendered locally as sound and never reaches the
-blade line. Ben Solo (idx-9 blue) is byte- and timing-identical to Obi-Wan Kenobi — a
-second two-hilt code family, alongside idx-2 blue and idx-6 green. **A capture is complete per color slot, regardless of which character is
+blade line. Ben Solo (idx-9 blue) is byte- and timing-identical to Obi-Wan Kenobi, and
+Darth Sidious (idx-7 red) to Darth Vader — two more two-hilt code families, alongside
+idx-2 blue and idx-6 green. **A capture is complete per color slot, regardless of which character is
 installed.**
 
 ---
@@ -270,7 +271,7 @@ visible flash count matches the byte count:
 | Hilt | Clash pattern |
 |------|---------------|
 | Savi (all) | 1 byte per strike |
-| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo | 1:1 single |
+| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious | 1:1 single |
 | **Maul staff LONG halves** | **Cycling (1, 3, 1, 4), period 4, repeats indefinitely** — phase does not reset per ignition |
 | **Maul staff SHORT half** | 1:1 single — same bytes as the longs, different clash firmware |
 | **Qui-Gon Jinn** | Random/intermittent double (~30–48%, session-variable), doubles ~135–190 ms apart |
@@ -284,10 +285,13 @@ apart (a tight pair) with later bytes spaced wider.
 
 **Clash-flash color is a delayed gate pulse, not a brightness flash.** About 75 ms
 *after* the `0xC0`, one or more otherwise-off gates rise for ~35–40 ms, then fall —
-a hue shift while the segments stay fully on. On the Legacy hilts this is a fixed
-**Red+Green full / Blue off** pulse regardless of the blade's steady color:
-electrically yellow, but through the diffuser at full intensity the eye reads it as
-**white**. On the Savi crystals the added color is per-crystal-slot specific (a
+a hue shift while the segments stay fully on. On the Legacy hilts the pulse depends
+on the color index. Blue and green hilts (Ben Solo idx 9, Ezra's Second idx 12) cut
+their primary gate off and drive **Red+Green full** — electrically yellow; at the
+bench it read as **white** on Ben Solo's blue blade and **yellow** on Ezra's green. Red hilts
+(Vader and Sidious, idx 7) keep their red gate on and **add Green at 25% duty**
+for 33–80 ms — a lower-energy yellow-amber flash, seen as yellow at the bench, not
+white. So the flash is built relative to the steady color, not one fixed drive. On the Savi crystals the added color is per-crystal-slot specific (a
 firmware lookup per index), which gives a useful discriminator: **teal (idx 5) shows
 no clash flash at all, while blue (idx 6) flashes full white** — the first behavior
 that tells teal and blue apart on a stock blade, where they otherwise both render as
