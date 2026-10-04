@@ -1,6 +1,6 @@
 # Capture Index
 
-137 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+165 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -82,6 +82,44 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-agenkolar-8ch-ignite-clash-ext-200kHz-2026-08-30.dsl`](legacy/agenkolar/legacy-agenkolar-8ch-ignite-clash-ext-200kHz-2026-08-30.dsl) | 200kHz | 2026-08-30 |
 | [`legacy-agenkolar-clashcycle-12plus-200kHz-2026-08-30.dsl`](legacy/agenkolar/legacy-agenkolar-clashcycle-12plus-200kHz-2026-08-30.dsl) | 200kHz | 2026-08-30 |
 | [`legacy-agenkolar-steadyburn-200kHz-2026-08-30.dsl`](legacy/agenkolar/legacy-agenkolar-steadyburn-200kHz-2026-08-30.dsl) | 200kHz | 2026-08-30 |
+
+### Ahsoka Cw  ·  14 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-ahsoka-cw-blue-clash-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-clash-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-blue-clashcycle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-clashcycle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-blue-gatepwm-10MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-gatepwm-10MHz-2026-10-03.dsl) | 10MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-blue-ignite-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-ignite-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-blue-ignite-freerun-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-ignite-freerun-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-blue-steadyburn-100kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-blue-steadyburn-100kHz-2026-10-03.dsl) | 100kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-colorchange-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-colorchange-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-clash-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-clash-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-clashcycle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-clashcycle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-gatepwm-10MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-gatepwm-10MHz-2026-10-03.dsl) | 10MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-ignite-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-ignite-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-ignite-freerun-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-ignite-freerun-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-green-steadyburn-100kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-green-steadyburn-100kHz-2026-10-03.dsl) | 100kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-idle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw/legacy-ahsoka-cw-idle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+
+### Ahsoka Cw Shoto  ·  14 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-ahsoka-cw-shoto-blue-clash-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-clash-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-blue-clashcycle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-clashcycle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-blue-gatepwm-10MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-gatepwm-10MHz-2026-10-03.dsl) | 10MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-blue-ignite-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-ignite-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-blue-ignite-freerun-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-ignite-freerun-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-blue-steadyburn-100kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-blue-steadyburn-100kHz-2026-10-03.dsl) | 100kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-colorchange-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-colorchange-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-clash-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-clash-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-clashcycle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-clashcycle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-gatepwm-10MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-gatepwm-10MHz-2026-10-03.dsl) | 10MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-ignite-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-ignite-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-ignite-freerun-1MHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-ignite-freerun-1MHz-2026-10-03.dsl) | 1MHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-green-steadyburn-100kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-steadyburn-100kHz-2026-10-03.dsl) | 100kHz | 2026-10-03 |
+| [`legacy-ahsoka-cw-shoto-idle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-idle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
 
 ### Baylan  ·  8 capture(s)
 

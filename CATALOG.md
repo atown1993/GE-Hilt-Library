@@ -513,3 +513,33 @@ Galaxy's Edge, Savi's Workshop, and the named hilts are products of The Walt Dis
 Company / Lucasfilm. This is an independent, non-commercial fan research project, not
 affiliated with or endorsed by either. Hilt and character names identify which
 physical product a capture came from.
+
+
+## 13. Ahsoka Tano (Clone Wars) — a two-color color-changer
+
+The Clone Wars Ahsoka set (main hilt + shoto) is a color-changer with a two-color
+cycle: it ignites in one color and a button press toggles green ↔ blue, with a brief
+white flash between. Like Master Sol (§9) it is a hybrid — the two colors live in
+different protocol families:
+
+| Color | Ignite | Refresh | Extinguish | Family |
+|-------|--------|---------|------------|--------|
+| Green | `0x24` | `0xA4` | `0x44` | Savi (idx 4) |
+| Blue  | `0x32` | `0xB2` | `0x52` | Legacy (idx 2) |
+
+All at the Legacy ~1010 ms cadence. Blue's extinguish-delay is much longer than green's
+(~660 ms vs ~315 ms) — a per-color audio-tail difference, not a protocol one.
+
+Color change is the Cal Kestis-style white-flash transition (§8): a ~0.5 s burst that
+alternates `0xE0` disable bytes with `0xA0` (white) and `0xB5`, then settles on the new
+color's refresh byte. On the gates the burst reads as white pulses separated by the
+`0xE0` blanks.
+
+Color memory: the hilt re-ignites in whichever color it was last extinguished in
+(extinguish in blue → next ignite is `0x32` blue). Retention appears to fade over time.
+
+Clash is `0xC0` (1:1 with strikes) and drives a yellow flash (red + green, blue off)
+regardless of the current color. On a blue blade the yellow flash blends with the blue
+base and reads as white to the eye, but the gates never drive true white.
+
+The main hilt and the shoto are byte-identical across the full capture set.
