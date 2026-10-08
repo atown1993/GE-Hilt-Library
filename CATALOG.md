@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -118,7 +118,7 @@ different hilts.
 | `0xB5` | White | Cal Kestis |
 | `0xB6` | Green | Qui-Gon Jinn, Kit Fisto, Saesee Tiin |
 | `0xB7` | Red (clean, no flicker) | Darth Vader, Darth Sidious |
-| `0xB8` | "Blood red" (deeper crimson) | Maul (both staff halves) |
+| `0xB8` | "Blood red" (deeper crimson) | Maul (both staff halves); The Ren (with `0x6X`/`0x7X` flicker, §14) |
 | `0xB9` | Blue | Obi-Wan Kenobi (2026 release), Ben Solo |
 | `0xBA` | Orange | Shin Hati, Baylan Skoll |
 
@@ -133,8 +133,8 @@ Key points established from these captures:
   Legacy idx 4 (`0xB4`) is Cal Kestis red. The two families keep independent color
   tables.
 - **Multiple indexes render red**, each per-character: idx 1 (Kylo, flickering), idx
-  4 (Cal Kestis), idx 7 (Vader, clean), idx 8 (Maul blood-red). "Red" is a family of
-  slots, not one code.
+  4 (Cal Kestis), idx 7 (Vader, clean), idx 8 (Maul blood-red — clean on Maul, flickering
+  on The Ren). "Red" is a family of slots, not one code, and flicker is not tied to a slot (§14).
 
 **Character identity is invisible on the wire — the protocol is color-keyed.**
 Controlled captures confirm this on both families: two different kyber tags of the
@@ -252,8 +252,8 @@ Two exceptions:
 - **Box-set Baylan Skoll** refreshes at ~2113 ms — roughly 2.09× the normal Legacy
   rate. Baylan and Shin Hati share an index, color, and ignite/extinguish timing but
   run different refresh firmware (Shin ~1013 ms, box-set Baylan ~2113 ms).
-- **Kylo Ren** has no periodic refresh at all — it streams flicker bytes instead
-  (§10). Do not apply a cadence fallback to Kylo.
+- **Kylo Ren and The Ren** have no periodic refresh at all — they stream flicker bytes
+  instead (§10, §14). Do not apply a cadence fallback to either.
 
 ---
 
@@ -399,7 +399,9 @@ appear normally). Unexplained; likely a firmware skip.
 
 **The flicker is segment-brightness modulation, not blanking.** The red color gate
 holds a constant ~100% the whole burn; all the visible flicker lives in the
-**segment-enable PWM duty**, which swings ~60–100%. No disable/blank byte appears
+**segment-enable PWM duty**: each ~126 ms frame renders as a base duty for ~85 ms followed by
+a ~40 ms brighter flash, both scaled by the level byte (roughly 20%/30% at `0x69` up to
+73%/100% at `0x7F`). No disable/blank byte appears
 anywhere in the stream — a Kylo blade that looks like it flickers off is being deeply
 dimmed, not commanded off. This is a distinct blade-render mode from steady
 single-color rendering.
@@ -543,3 +545,36 @@ regardless of the current color. On a blue blade the yellow flash blends with th
 base and reads as white to the eye, but the gates never drive true white.
 
 The main hilt and the shoto are byte-identical across the full capture set.
+
+## 14. The Ren — the second flicker hilt, on a different slot
+
+The Ren (the Knights of Ren leader's hilt) is the second unstable-blade hilt captured,
+and it shows that the flicker effect is **independent of the color index**:
+
+| Byte | Role |
+|------|------|
+| `0x38` | Ignite — Legacy idx 8, the same "blood red" slot as Maul |
+| `0x69`–`0x7F` | Flicker stream during burn — Kylo's triangle exactly (§10) |
+| `0xB8` | A single refresh ~300 ms before extinguish (the segments go solid) |
+| `0x58` | Extinguish |
+| `0xE0`, `0x80` | Post-off pair (Kylo sends `0x80` twice instead) |
+
+The stream is byte-for-byte Kylo's: `0x69 → 0x7F → 0x69`, `0x7D` skipped, **125.6 ms per
+step** (σ 0.17 ms over 656 steps), red gate held at ~100% throughout, no periodic refresh.
+So two hilts on two different red slots (idx 1 and idx 8) run the same animation, and the
+steady Maul hilts share idx 8 with a flickering one — which red a blade renders and
+whether it flickers are separate firmware choices.
+
+**Flicker phase survives extinguish.** Across three ignitions in one capture, each
+re-ignite resumed the triangle exactly one step past where the previous burn stopped,
+direction preserved (`…0x69, 0x6A` ↑ off → on `0x6B` ↑; `…0x78, 0x77` ↓ off → on
+`0x76` ↓). The level counter is not reset by a blade-off/on cycle. Whether it runs while
+the blade is off, and whether a battery pull resets it, were not tested.
+
+**Sequence.** Ignition is a normal solid-segment wave (~172 ms, 86 ms per segment); the
+flicker stream begins ~660–690 ms after ignite, once all four segments are lit. On
+extinguish the hilt sends one `0xB8` (segments solid), then `0x58` ~300 ms later.
+
+Clash is `0xC0`, 1:1 (15/15), reading yellow (red held, green at ~10% for ~100 ms); each
+clash pauses the flicker stream ~1 s and it resumes from the next level. Red gate carrier
+5960 Hz. Timings: ignition 172 / extinguish-delay 838 / extinguish 372 ms.

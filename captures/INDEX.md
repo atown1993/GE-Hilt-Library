@@ -1,6 +1,6 @@
 # Capture Index
 
-165 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+173 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -275,6 +275,19 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-quigon-gatepwm-10MHz-2026-08-22.dsl`](legacy/quigon/legacy-quigon-gatepwm-10MHz-2026-08-22.dsl) | 10MHz | 2026-08-22 |
 | [`legacy-quigon-idle-200kHz-2026-08-22.dsl`](legacy/quigon/legacy-quigon-idle-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
 | [`legacy-quigon-steadyburn-200kHz-2026-08-22.dsl`](legacy/quigon/legacy-quigon-steadyburn-200kHz-2026-08-22.dsl) | 200kHz | 2026-08-22 |
+
+### Ren  ·  8 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-ren-8ch-ignite-clash-ext-200kHz-2026-10-07.dsl`](legacy/ren/legacy-ren-8ch-ignite-clash-ext-200kHz-2026-10-07.dsl) | 200kHz | 2026-10-07 |
+| [`legacy-ren-8ch-ignite-ext-1MHz-2026-10-07.dsl`](legacy/ren/legacy-ren-8ch-ignite-ext-1MHz-2026-10-07.dsl) | 1MHz | 2026-10-07 |
+| [`legacy-ren-8ch-ignite-ext-freerun-1MHz-2026-10-07.dsl`](legacy/ren/legacy-ren-8ch-ignite-ext-freerun-1MHz-2026-10-07.dsl) | 1MHz | 2026-10-07 |
+| [`legacy-ren-clashcycle-15-200kHz-2026-10-07.dsl`](legacy/ren/legacy-ren-clashcycle-15-200kHz-2026-10-07.dsl) | 200kHz | 2026-10-07 |
+| [`legacy-ren-flicker-phase-3ignitions-200kHz-2026-10-07.dsl`](legacy/ren/legacy-ren-flicker-phase-3ignitions-200kHz-2026-10-07.dsl) | 200kHz | 2026-10-07 |
+| [`legacy-ren-gatepwm-10MHz-2026-10-07.dsl`](legacy/ren/legacy-ren-gatepwm-10MHz-2026-10-07.dsl) | 10MHz | 2026-10-07 |
+| [`legacy-ren-idle-200kHz-2026-10-07.dsl`](legacy/ren/legacy-ren-idle-200kHz-2026-10-07.dsl) | 200kHz | 2026-10-07 |
+| [`legacy-ren-steadyburn-100kHz-2026-10-07.dsl`](legacy/ren/legacy-ren-steadyburn-100kHz-2026-10-07.dsl) | 100kHz | 2026-10-07 |
 
 ### Rey  ·  3 capture(s)
 
