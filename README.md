@@ -19,7 +19,8 @@ targets:
    command stream the hilt sends: ignite, refresh, clash, extinguish, and the
    color/mode encoding. This is the bulk of the current catalog — Savi's Workshop
    hilts across all eight kyber colors, plus a growing set of Legacy character
-   hilts.
+   hilts — and, as of Oct 2026, the first captures of the **Savi's Workshop Gen2**
+   chassis on a stock Gen1 blade (CATALOG §15; more sessions to come).
 
 2. **Blade-internal signals (a target we want, more captures welcome).** A
    multi-channel view *inside* the blade drive — the individual segment-enable
@@ -41,6 +42,7 @@ targets:
 CATALOG.md              the protocol catalog — how hilts drive blades, in full
 captures/
   savis/<color>/        Savi's Workshop hilts, by kyber color
+  savis-gen2/<color>/   Savi's Workshop Gen2 (Oct 2026) hilt on a stock Gen1 blade
   legacy/<hilt>/        Legacy character hilts, by character
   validation/           rig-validation / channel-mapping captures
   INDEX.md              generated index of every capture

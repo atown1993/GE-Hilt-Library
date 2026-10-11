@@ -578,3 +578,60 @@ extinguish the hilt sends one `0xB8` (segments solid), then `0x58` ~300 ms later
 Clash is `0xC0`, 1:1 (15/15), reading yellow (red held, green at ~10% for ~100 ms); each
 clash pauses the flicker stream ~1 s and it resumes from the next level. Red gate carrier
 5960 Hz. Timings: ignition 172 / extinguish-delay 838 / extinguish 372 ms.
+
+## 15. Savi's Workshop Gen2 (Oct 2026) — first look, stock Gen1 blade
+
+The Oct 2026 Savi's Workshop update ships a new chassis and a new addressable blade.
+This section is **session one of a multi-session capture** and covers only the hilt
+driving an **original Gen1 stock segmented blade** on the standard 8-channel tap rig
+(DATA + three RGB gates + four segment lines). Nothing inside the new blade has been
+probed yet; what the hilt sends to its own blade, and what the blade does with it, is
+still open. Expect this section to grow and be restructured as captures land. Captures:
+[`captures/savis-gen2/`](captures/savis-gen2/).
+
+**What carries over from Gen1 (measured, blue and purple):**
+
+- Colour bytes are the legacy Savi set — blue `0x26` / `0x46`, purple `0x27` / `0x47`,
+  clash `0xC0` (§2, §7).
+- Blade-side timings match the Gen1 catalog: ignition 172–174 ms, extinguish-delay
+  458 / 475 ms and extinguish 258 / 428 ms (blue / purple) vs. 460 / 482 and 260 / 430
+  in [`data/hilt-timings.csv`](data/hilt-timings.csv).
+- Clash is one `0xC0` per strike (16/16, 5/5), rendered as red + green with the blue gate
+  off for ~38 ms — the same R+G flash as §7.
+- Gate carrier 5.95 kHz; gate-on latency 17.1 ms after the ignite frame start.
+
+**What is new — the framing:**
+
+| Behaviour | Gen1 Savi (stock blade) | Gen2 (stock blade) |
+|---|---|---|
+| Ignite byte `0x2X` | not sent (§4) | **sent**, every ignition |
+| Refresh `0xAX` during burn | every ~706–739 ms (§6) | **none** — zero frames in a 36 s burn |
+| Wake frame `0x15` | — | **new**: 2.66–2.67 s after battery connect, and on every ignite from sleep, 337.5 ms before the ignite byte (11/11) |
+| Post-off `0x80` | only to a NeoPixel blade (§12.1) | **sent to the stock blade**, 10.143 s after the extinguish byte (5/5, spread 1.6 ms); the hilt then sleeps |
+
+Notes on the new frames:
+
+- `0x15` is identical on blue and purple, so its low nibble is not a colour index. A
+  stock blade shows nothing for it. Its purpose is unknown until the new blade is on the
+  analyzer.
+- Re-igniting inside the 10.14 s post-off window (tested at 2 s and 5.4 s) sends the
+  ignite byte alone; after `0x80` the next ignition is `0x15` → ignite again.
+- Idle with the blade off is silent: DATA high, gates and segments flat, zero edges in 10 s.
+- A 10 MHz capture of an ignition shows only the same slow frames (1.2 / 2.4 / 17 ms
+  pulses) — the hilt does not send a pixel stream to a stock blade.
+
+**Other observations:**
+
+- **Orange and teal crystals are refused.** Misfire sound, same as no crystal; on the
+  wire only the `0x15` wake frame, no ignite byte, gates and segments flat.
+- **Tip drag / stab** (three attempts) produced no frame and no gate change on the stock
+  blade.
+- **Hilt LEDs** blink for about a minute after power-up; after an ignite + extinguish they
+  stay off until the battery is pulled (Gen1 hilts keep blinking).
+- **The new blade** carries its own microcontroller (Sonix SNC85F150AKXG), a 3-wire hilt
+  connection, and two data lines feeding a double-sided addressable LED board.
+
+**Not yet captured:** hilt → new blade (does the blade answer `0x15`?), controller → LED
+stream, new-blade effects (tip drag, deflection, spin), new blade in a Gen1 hilt,
+no-crystal and cracked-crystal cases. Captures and a `hilt-timings.csv` row follow as
+those sessions complete.

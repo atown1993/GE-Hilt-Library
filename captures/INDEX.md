@@ -1,6 +1,6 @@
 # Capture Index
 
-173 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+192 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -70,6 +70,49 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | Capture file | Rate | Date |
 |---|---|---|
 | [`savis-yellow-8ch-ignite-clash-ext-1MHz-2026-08-29.dsl`](savis/yellow/savis-yellow-8ch-ignite-clash-ext-1MHz-2026-08-29.dsl) | 1MHz | 2026-08-29 |
+
+---
+
+## Savi's Workshop Gen2 — Oct 2026 chassis on a stock Gen1 blade (CATALOG §15)
+
+### Gen2 Blue  ·  14 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blue-clash8-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-clash8-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-clashcycle16-steadyburn36s-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-clashcycle16-steadyburn36s-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-gatepwm-10MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-gatepwm-10MHz-2026-10-10.dsl) | 10MHz | 2026-10-10 |
+| [`savis-gen2-blue-idle-10s-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-idle-10s-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-ignite-ext-awake-1MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-ignite-ext-awake-1MHz-2026-10-10.dsl) | 1MHz | 2026-10-10 |
+| [`savis-gen2-blue-powerup-wake-ignite-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-powerup-wake-ignite-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-reignite-sleep-postoff-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-reignite-sleep-postoff-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-tipdrag-clash-postoff-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-tipdrag-clash-postoff-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-10MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-10MHz-2026-10-10.dsl) | 10MHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-ext-1MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-ext-1MHz-2026-10-10.dsl) | 1MHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-ext-freerun-1MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-ext-freerun-1MHz-2026-10-10.dsl) | 1MHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-fromsleep-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-fromsleep-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-fromsleep-dup-200kHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-fromsleep-dup-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-blue-wake-ignite-reignite2s-1MHz-2026-10-10.dsl`](savis-gen2/blue/savis-gen2-blue-wake-ignite-reignite2s-1MHz-2026-10-10.dsl) | 1MHz | 2026-10-10 |
+
+### Gen2 Orange  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-orange-crystal-refused-200kHz-2026-10-10.dsl`](savis-gen2/orange/savis-gen2-orange-crystal-refused-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+
+### Gen2 Purple  ·  3 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-purple-firsttest-2cycles-200kHz-2026-10-10.dsl`](savis-gen2/purple/savis-gen2-purple-firsttest-2cycles-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-purple-fullcycle-clash5-postoff-200kHz-2026-10-10.dsl`](savis-gen2/purple/savis-gen2-purple-fullcycle-clash5-postoff-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+| [`savis-gen2-purple-ignite-ext-awake-1MHz-2026-10-10.dsl`](savis-gen2/purple/savis-gen2-purple-ignite-ext-awake-1MHz-2026-10-10.dsl) | 1MHz | 2026-10-10 |
+
+### Gen2 Teal  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-teal-crystal-refused-200kHz-2026-10-10.dsl`](savis-gen2/teal/savis-gen2-teal-crystal-refused-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
 
 ---
 
