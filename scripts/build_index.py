@@ -31,7 +31,7 @@ def section(title, groups):
     return "\n".join(L)
 
 # collect
-savis={}; gen2={}; legacy={}; validation=[]
+savis={}; gen2={}; gen2b={}; legacy={}; validation=[]
 name_dir={}
 for f in glob.glob(os.path.join(CAP,"savis","*","*.dsl")):
     color=os.path.basename(os.path.dirname(f)).capitalize()
@@ -40,6 +40,10 @@ for f in glob.glob(os.path.join(CAP,"savis-gen2","*","*.dsl")):
     color=os.path.basename(os.path.dirname(f)).capitalize()
     key=f"Gen2 {color}"
     gen2.setdefault(key,[]).append(f); name_dir[key]=f"savis-gen2/{color.lower()}"
+for f in glob.glob(os.path.join(CAP,"savis-gen2-blade","*","*.dsl")):
+    sub=os.path.basename(os.path.dirname(f))
+    key="Gen1 hilt → Gen2 blade, purple" if sub.startswith("gen1-hilt") else f"Gen2 hilt → Gen2 blade, {sub.capitalize()}"
+    gen2b.setdefault(key,[]).append(f); name_dir[key]=f"savis-gen2-blade/{sub}"
 for f in glob.glob(os.path.join(CAP,"legacy","*","*.dsl")):
     hilt=os.path.basename(os.path.dirname(f))
     disp=hilt.replace("-"," ").title()
@@ -47,7 +51,7 @@ for f in glob.glob(os.path.join(CAP,"legacy","*","*.dsl")):
 for f in glob.glob(os.path.join(CAP,"validation","*.dsl")):
     validation.append(f)
 
-total=sum(len(v) for v in savis.values())+sum(len(v) for v in gen2.values())+sum(len(v) for v in legacy.values())+len(validation)
+total=sum(len(v) for v in savis.values())+sum(len(v) for v in gen2.values())+sum(len(v) for v in gen2b.values())+sum(len(v) for v in legacy.values())+len(validation)
 
 head=f"""# Capture Index
 
@@ -68,6 +72,7 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 """
 body = section("Savi's Workshop (by kyber color)", savis) + "\n---\n\n" \
      + section("Savi's Workshop Gen2 — Oct 2026 chassis on a stock Gen1 blade (CATALOG §15)", gen2) + "\n---\n\n" \
+     + section("Savi's Workshop Gen2 — the new addressable blade (CATALOG §16)", gen2b) + "\n---\n\n" \
      + section("Legacy character hilts", legacy)
 if validation:
     name_dir["Rig validation & channel-mapping"]="validation"

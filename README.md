@@ -19,8 +19,10 @@ targets:
    command stream the hilt sends: ignite, refresh, clash, extinguish, and the
    color/mode encoding. This is the bulk of the current catalog — Savi's Workshop
    hilts across all eight kyber colors, plus a growing set of Legacy character
-   hilts — and, as of Oct 2026, the first captures of the **Savi's Workshop Gen2**
-   chassis on a stock Gen1 blade (CATALOG §15; more sessions to come).
+   hilts — and, as of Oct 2026, the **Savi's Workshop Gen2** chassis: on a stock
+   Gen1 blade (CATALOG §15) and on its own new addressable blade (CATALOG §16),
+   where the hilt turns out to stream WS2812-style LED frames itself. More
+   sessions to come.
 
 2. **Blade-internal signals (a target we want, more captures welcome).** A
    multi-channel view *inside* the blade drive — the individual segment-enable
@@ -43,12 +45,13 @@ CATALOG.md              the protocol catalog — how hilts drive blades, in full
 captures/
   savis/<color>/        Savi's Workshop hilts, by kyber color
   savis-gen2/<color>/   Savi's Workshop Gen2 (Oct 2026) hilt on a stock Gen1 blade
+  savis-gen2-blade/     Gen2 hilt (and a Gen1 hilt) driving the new addressable blade
   legacy/<hilt>/        Legacy character hilts, by character
   validation/           rig-validation / channel-mapping captures
   INDEX.md              generated index of every capture
 data/hilt-timings.csv   per-hilt/per-color bytes + measured timings (source of truth)
 docs/                   browsable, sortable Pages table + CSV download
-tools/                  decode_dsl.py (protocol decoder) + analyze_timings.py
+tools/                  decode_dsl.py (protocol decoder) + analyze_timings.py + led_frames.py (Gen2 pixel frames)
 scripts/                regenerate docs/ and the capture index
 guides/                 Blade-Types.md · DSLogic-Setup.md (capture procedure)
 SUBMISSION-TEMPLATE.md  what to send when you contribute a capture

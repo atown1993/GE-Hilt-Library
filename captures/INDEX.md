@@ -1,6 +1,6 @@
 # Capture Index
 
-192 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+203 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -113,6 +113,31 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | Capture file | Rate | Date |
 |---|---|---|
 | [`savis-gen2-teal-crystal-refused-200kHz-2026-10-10.dsl`](savis-gen2/teal/savis-gen2-teal-crystal-refused-200kHz-2026-10-10.dsl) | 200kHz | 2026-10-10 |
+
+---
+
+## Savi's Workshop Gen2 — the new addressable blade (CATALOG §16)
+
+### Gen1 hilt → Gen2 blade, purple  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen1-hilt-gen2-blade-purple-ign-4MHz-2026-10-11.dsl`](savis-gen2-blade/gen1-hilt-purple/savis-gen1-hilt-gen2-blade-purple-ign-4MHz-2026-10-11.dsl) | 4MHz | 2026-10-11 |
+
+### Gen2 hilt → Gen2 blade, Purple  ·  10 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-purple-burn-5MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-burn-5MHz-2026-10-11.dsl) | 5MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-clash-5MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-clash-5MHz-2026-10-11.dsl) | 5MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-connect-1MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-connect-1MHz-2026-10-11.dsl) | 1MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-connect-2-1MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-connect-2-1MHz-2026-10-11.dsl) | 1MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-hiltline-vs-strip-10MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-hiltline-vs-strip-10MHz-2026-10-11.dsl) | 10MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-ign-10MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-ign-10MHz-2026-10-11.dsl) | 10MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-strip-frame-50MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-strip-frame-50MHz-2026-10-11.dsl) | 50MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-twist-2-10MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-twist-2-10MHz-2026-10-11.dsl) | 10MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-twist-5MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-twist-5MHz-2026-10-11.dsl) | 5MHz | 2026-10-11 |
+| [`savis-gen2-blade-purple-wake-4MHz-2026-10-11.dsl`](savis-gen2-blade/purple/savis-gen2-blade-purple-wake-4MHz-2026-10-11.dsl) | 4MHz | 2026-10-11 |
 
 ---
 
