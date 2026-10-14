@@ -687,7 +687,7 @@ Measured twice, byte-identical, from the moment the blade gets V+:
 | +355 ms → | idles LOW | | LED-frame mode from here on |
 
 The same query/answer runs again when the hilt wakes from a longer idle (minutes); a 30 s idle
-wake went straight to LED frames. A Gen1 blade never answers, which is why the Gen2 hilt
+wake went straight to LED frames. The sleep timing itself is measured in §17.4. A Gen1 blade never answers, which is why the Gen2 hilt
 speaks legacy bytes to it (§15 — the `0x15` wake frame seen there was never sent to the Gen2
 blade in any capture).
 
@@ -724,6 +724,72 @@ Sonix ICP header; 3-wire ring connector, 18.5 mm. The hilt data line sees a weak
 (120–180 kΩ in-circuit; the blade MCU has none internally) — the usual 10 kΩ data → V+ on the
 tap rig applies.
 
-**Not yet captured:** the other seven crystals (incl. orange and teal, refused on the Gen1
-blade), no-crystal / cracked crystal, tip drag, deflection, spin (needs a long-lead rig), and
-the sleep threshold for the re-handshake.
+**Not yet captured:** the other seven solid crystals (incl. orange and teal, refused on the Gen1
+blade), no-crystal, tip drag, deflection, spin (needs a long-lead rig). Cracked crystals and the
+sleep/wake behaviour: §17.
+
+## 17. Savi's Workshop Gen2 — the cracked crystals: one program, two starting colours
+
+Session three (2026-10-13), same rig as §16: the Gen2 hilt driving the opened Gen2 blade, analyzer
+on the hilt data wire and the strip input, DSView stream mode 10 MHz. Two crystals, the full
+capture set each (wake · ignite · burn · clash · twist · clash-cycle · idle, plus a sleep take):
+[`captures/savis-gen2-blade/kylo-cracked/`](captures/savis-gen2-blade/kylo-cracked/) and
+[`captures/savis-gen2-blade/ben-solo-cracked/`](captures/savis-gen2-blade/ben-solo-cracked/).
+Decoder: [`tools/frame_timeline.py`](tools/frame_timeline.py) (per-frame colour timeline; `CH=1`
+decodes the hilt wire, which carries the identical stream).
+
+### 17.1 What the crystal decides
+
+The **Kylo Ren cracked crystal** ignites red; the **Ben Solo cracked crystal** ignites blue. That is
+the only difference. On either crystal a twist toggles the blade red ↔ blue in a single frame
+(no wipe), and blade off → on returns to the crystal's own starting colour — measured twice per
+crystal. A twist the hilt's motion sensor does not accept as a twist registers as an ordinary
+clash (both crystals).
+
+### 17.2 The red side (the "Kylo" look)
+
+| Effect | On the wire |
+|---|---|
+| **Ignite** | base → tip wipe, 6 LEDs per 24 ms frame (~0.22 s to full). The leading LEDs are `(127,127,0)` **yellow**, settling to red `(0,58,0)` three frames behind the front. |
+| **Burn** | the whole blade steps between R≈34 and 60; a 3–5-LED hot-spot (R≈90) advances ~8 LEDs per 64 ms frame, base → tip in ~0.45 s, wrapping continuously. Every **4.07 ± 0.02 s** (11 cycles measured) a "crackle": the blade drops to `(0,17,0)` and an orange streak `(26,90,0)` runs base → tip, then brightness ramps back over ~1 s. |
+| **Clash** | one all-off frame (~30 ms), one full-blade `(26,30,0)` frame (~45 ms, dim yellow), then the crackle sequence restarts from `(0,17,0)`. 1:1 on 26 strikes; three doubles 0.39 s apart each counted as two events. The 4.07 s crackle timer restarts from any event (clash, twist-to-red, ignite) — first interval ~4.35 s, then 4.07. |
+| **Extinguish** | tip → base, ~5 LEDs per frame, ~0.7 s, plain red — hot-spot and crackle stop the moment the wipe starts. |
+
+### 17.3 The blue side (the "Ben Solo" look)
+
+| Effect | On the wire |
+|---|---|
+| **Ignite** | the same yellow front, blue `(0,0,56)` filling behind, 0.24 s to full. |
+| **Burn** | uniform `(0,0,56)`, no red or green anywhere, no brightness wander. The twinkle is a **fixed 8-step loop, period 1.245 s**: LED 0 (B101) → 11 (101) → 23 (72) → 4 (117) → 13 (101) → 21 (86) → 29 (117) → 37 (117). Identical for 50 s (523 of 523 frames); the same kind of scripted cycle as purple's 1.23 s twinkle (§16.4). |
+| **Clash** | the same all-off frame + `(26,30,0)` flash; the twinkle loop restarts at LED 0 after every strike (19 of 19). |
+| **Extinguish** | tip → base; the base LEDs dim 58 → 41 → 29 → 19 → 7 over the last five frames. |
+
+### 17.4 Sleep and wake — measured
+
+- **9.05–9.08 s after extinguish** (three captures) the hilt sends a short message on the hilt
+  wire — a 17 ms preamble, then an 8-symbol train in the 1.2 / 2.4 ms units of the §16.2 query —
+  and parks the line **HIGH**. With the blade off and hands off, the hilt wire then sits flat HIGH
+  and the strip input flat LOW (idle takes, 2.5 min after extinguish).
+- **Wake from that state**: a short exchange (17 ms, then a 12.2 ms turnaround) ~0.2 s before the
+  first LED frame; the blade does not answer (three captures).
+- **Wake after ~10 min** (two captures) and after ~2 days (one): the **full connect handshake** of
+  §16.2 — query, then the blade's 15-symbol answer, byte-identical to the 10-11 captures.
+- So there are two levels: a light sleep at 9 s that needs no re-handshake, and a deeper sleep,
+  somewhere between 30 s and 10 min, after which the hilt re-identifies the blade.
+
+### 17.5 A Gen1 hilt with the cracked crystal
+
+A Gen1 Savi's hilt with the Kylo cracked crystal sends plain red: `0x21` ignite, `0xA1` refresh at
+~740 ms, `0xC0` for both a clash and a twist, `0x41` extinguish — a Gen1 hilt reads only the
+crystal's colour, so a cracked crystal is just red (or blue) to it. The blade's translator renders
+flat `(0,56,0)` with 52 ms wipe frames and a `(51,51,0)` clash flash.
+([`captures/savis-gen2-blade/gen1-hilt-kylo-cracked/`](captures/savis-gen2-blade/gen1-hilt-kylo-cracked/))
+
+**1.52 s after the `0x41`, the Gen1 hilt sends `0x80` twice and plays its "blade disconnected"
+sound** (heard at the bench at that moment); the blade answers with one blank frame. This is the
+same post-off `0x80` pair seen on Neopixel-blade and Legacy-hilt captures and never on a stock
+blade (§8-era notes): a post-extinguish blade check that the Gen2 blade fails. The Gen2 hilt
+never does this.
+
+**Still to come:** the seven solid crystals, no-crystal, tip drag, deflection, spin.
+

@@ -1,6 +1,6 @@
 # Capture Index
 
-203 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+221 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -116,13 +116,46 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 
 ---
 
-## Savi's Workshop Gen2 — the new addressable blade (CATALOG §16)
+## Savi's Workshop Gen2 — the new addressable blade (CATALOG §16–17)
 
-### Gen1 hilt → Gen2 blade, purple  ·  1 capture(s)
+### Gen1 hilt → Gen2 blade, Kylo Cracked  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen1-hilt-gen2-blade-kylo-cracked-ign-10MHz-2026-10-13.dsl`](savis-gen2-blade/gen1-hilt-kylo-cracked/savis-gen1-hilt-gen2-blade-kylo-cracked-ign-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+
+### Gen1 hilt → Gen2 blade, Purple  ·  1 capture(s)
 
 | Capture file | Rate | Date |
 |---|---|---|
 | [`savis-gen1-hilt-gen2-blade-purple-ign-4MHz-2026-10-11.dsl`](savis-gen2-blade/gen1-hilt-purple/savis-gen1-hilt-gen2-blade-purple-ign-4MHz-2026-10-11.dsl) | 4MHz | 2026-10-11 |
+
+### Gen2 hilt → Gen2 blade, Ben Solo Cracked  ·  8 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-ben-solo-cracked-burn-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-burn-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-clash-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-clash-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-cyc-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-cyc-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-idle-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-idle-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-ign-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-ign-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-sleep-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-sleep-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-twist-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-twist-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-ben-solo-cracked-wake-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-wake-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+
+### Gen2 hilt → Gen2 blade, Kylo Cracked  ·  9 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-kylo-cracked-burn-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-burn-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-clash-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-clash-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-cyc-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-cyc-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-full-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-full-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-idle-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-idle-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-ign-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-ign-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-twist-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-twist-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-twist-2-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-twist-2-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+| [`savis-gen2-blade-kylo-cracked-wake-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-wake-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
 
 ### Gen2 hilt → Gen2 blade, Purple  ·  10 capture(s)
 

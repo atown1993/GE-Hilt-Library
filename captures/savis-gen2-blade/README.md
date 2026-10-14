@@ -31,3 +31,21 @@ clean. For the Gen1-hilt file, decode the hilt line with `tools/decode_dsl.py -c
 
 Findings: `CATALOG.md` §16. This is session two of a multi-session capture; one crystal
 (purple) so far.
+
+## Session three — 2026-10-13: the cracked crystals
+
+Same rig. All takes **DSView stream mode, 10 MHz, CH0 + CH1, no trigger** (CH2 off). Bit values
+decode cleanly from either channel; in the `ben-solo-cracked/` set the CH0 lead had gone marginal
+(runt pulses → 50–75 % of frames drop a bit), so **decode CH1** there — it is the same stream.
+`tools/frame_timeline.py FILE.dsl` prints a 0.5 s colour timeline (`CH=1 python3 …` for the hilt wire).
+
+| File | What |
+|---|---|
+| `kylo-cracked/…-full` (50 s) | off → ignite → burn → ~11 clashes → twist to blue → blue burn → off; the first take, hilt asleep 2 days: full handshake |
+| `kylo-cracked/…-wake` | hilt asleep ~10 min → blade on: full handshake again |
+| `kylo-cracked/…-ign`, `…-burn` (50 s), `…-clash`, `…-twist`, `…-twist-2`, `…-cyc` (13 clashes incl. a double), `…-idle` | the standard set |
+| `ben-solo-cracked/…-wake`, `…-ign`, `…-burn` (50 s), `…-clash`, `…-twist`, `…-cyc`, `…-idle` | the standard set |
+| `ben-solo-cracked/…-sleep` (50 s) | two off → 9 s → sleep-message → on cycles |
+| `gen1-hilt-kylo-cracked/…-ign` | a **Gen1** Savi's hilt with the Kylo cracked crystal: legacy bytes, then `0x80` ×2 + the disconnect sound |
+
+Findings: `CATALOG.md` §17.

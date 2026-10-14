@@ -42,7 +42,8 @@ for f in glob.glob(os.path.join(CAP,"savis-gen2","*","*.dsl")):
     gen2.setdefault(key,[]).append(f); name_dir[key]=f"savis-gen2/{color.lower()}"
 for f in glob.glob(os.path.join(CAP,"savis-gen2-blade","*","*.dsl")):
     sub=os.path.basename(os.path.dirname(f))
-    key="Gen1 hilt → Gen2 blade, purple" if sub.startswith("gen1-hilt") else f"Gen2 hilt → Gen2 blade, {sub.capitalize()}"
+    label=sub.replace("gen1-hilt-","",1).replace("-"," ").title() if sub.startswith("gen1-hilt") else sub.replace("-"," ").title()
+    key=f"Gen1 hilt → Gen2 blade, {label}" if sub.startswith("gen1-hilt") else f"Gen2 hilt → Gen2 blade, {label}"
     gen2b.setdefault(key,[]).append(f); name_dir[key]=f"savis-gen2-blade/{sub}"
 for f in glob.glob(os.path.join(CAP,"legacy","*","*.dsl")):
     hilt=os.path.basename(os.path.dirname(f))
@@ -72,7 +73,7 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 """
 body = section("Savi's Workshop (by kyber color)", savis) + "\n---\n\n" \
      + section("Savi's Workshop Gen2 — Oct 2026 chassis on a stock Gen1 blade (CATALOG §15)", gen2) + "\n---\n\n" \
-     + section("Savi's Workshop Gen2 — the new addressable blade (CATALOG §16)", gen2b) + "\n---\n\n" \
+     + section("Savi's Workshop Gen2 — the new addressable blade (CATALOG §16–17)", gen2b) + "\n---\n\n" \
      + section("Legacy character hilts", legacy)
 if validation:
     name_dir["Rig validation & channel-mapping"]="validation"
