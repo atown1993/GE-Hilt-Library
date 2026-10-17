@@ -1,6 +1,6 @@
 # Capture Index
 
-221 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+242 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -222,6 +222,30 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-ahsoka-cw-shoto-green-steadyburn-100kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-green-steadyburn-100kHz-2026-10-03.dsl) | 100kHz | 2026-10-03 |
 | [`legacy-ahsoka-cw-shoto-idle-200kHz-2026-10-03.dsl`](legacy/ahsoka-cw-shoto/legacy-ahsoka-cw-shoto-idle-200kHz-2026-10-03.dsl) | 200kHz | 2026-10-03 |
 
+### Ahsoka Rebels Black  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-ahsoka-rebels-black-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-8ch-ignite-ext-1MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-8ch-ignite-ext-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-clashcycle-15-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-clashcycle-15-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-gatepwm-10MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-gatepwm-10MHz-2026-10-16.dsl) | 10MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-idle-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-idle-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-steadyburn-100kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black/legacy-ahsoka-rebels-black-steadyburn-100kHz-2026-10-16.dsl) | 100kHz | 2026-10-16 |
+
+### Ahsoka Rebels Black Shoto  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-ahsoka-rebels-black-shoto-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-8ch-ignite-ext-1MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-8ch-ignite-ext-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-clashcycle-15-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-clashcycle-15-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-gatepwm-10MHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-gatepwm-10MHz-2026-10-16.dsl) | 10MHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-idle-200kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-idle-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-ahsoka-rebels-black-shoto-steadyburn-100kHz-2026-10-16.dsl`](legacy/ahsoka-rebels-black-shoto/legacy-ahsoka-rebels-black-shoto-steadyburn-100kHz-2026-10-16.dsl) | 100kHz | 2026-10-16 |
+
 ### Baylan  ·  8 capture(s)
 
 | Capture file | Rate | Date |
@@ -318,6 +342,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-kylo-flicker-longburn-200kHz-2026-08-28.dsl`](legacy/kylo/legacy-kylo-flicker-longburn-200kHz-2026-08-28.dsl) | 200kHz | 2026-08-28 |
 | [`legacy-kylo-ignite-clash-ext-1MHz-2026-06-03.dsl`](legacy/kylo/legacy-kylo-ignite-clash-ext-1MHz-2026-06-03.dsl) | 1MHz | 2026-06-03 |
 | [`legacy-kylo-ignite-flicker-ext-1MHz-2026-06-03.dsl`](legacy/kylo/legacy-kylo-ignite-flicker-ext-1MHz-2026-06-03.dsl) | 1MHz | 2026-06-03 |
+
+### Leia  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-leia-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-8ch-ignite-clash-ext-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-leia-8ch-ignite-ext-1MHz-2026-10-16.dsl`](legacy/leia/legacy-leia-8ch-ignite-ext-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-leia-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl`](legacy/leia/legacy-leia-8ch-ignite-ext-freerun-1MHz-2026-10-16.dsl) | 1MHz | 2026-10-16 |
+| [`legacy-leia-clashcycle-15-200kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-clashcycle-15-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-leia-gatepwm-10MHz-2026-10-16.dsl`](legacy/leia/legacy-leia-gatepwm-10MHz-2026-10-16.dsl) | 10MHz | 2026-10-16 |
+| [`legacy-leia-idle-200kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-idle-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
+| [`legacy-leia-steadyburn-100kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-steadyburn-100kHz-2026-10-16.dsl) | 100kHz | 2026-10-16 |
 
 ### Mace  ·  6 capture(s)
 

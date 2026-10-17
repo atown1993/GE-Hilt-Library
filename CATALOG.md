@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano (Rebels — Black Inlay, main + shoto), and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -112,10 +112,10 @@ different hilts.
 | Code | Visual color | Hilt(s) |
 |------|--------------|---------|
 | `0xB1` | Red (with `0x6X`/`0x7X` flicker) | Kylo Ren |
-| `0xB2` | Blue | Kanan, Devon, Agen Kolar |
+| `0xB2` | Blue | Kanan, Devon, Agen Kolar, Skywalker Reforged, Leia Organa, Ahsoka Tano (TCW, blue state) |
 | `0xB3` | Purple | Mace Windu |
 | `0xB4` | Red (Cal Kestis variant) | Cal Kestis |
-| `0xB5` | White | Cal Kestis |
+| `0xB5` | White | Ahsoka Tano (Rebels — Black Inlay, main + shoto); Cal Kestis (one stop of its colour cycle) |
 | `0xB6` | Green | Qui-Gon Jinn, Kit Fisto, Saesee Tiin |
 | `0xB7` | Red (clean, no flicker) | Darth Vader, Darth Sidious |
 | `0xB8` | "Blood red" (deeper crimson) | Maul (both staff halves); The Ren (with `0x6X`/`0x7X` flicker, §14) |
@@ -124,8 +124,12 @@ different hilts.
 
 Key points established from these captures:
 
-- **Some codes are shared across hilts** — `0xB2` is blue on Kanan, Devon, and Agen
-  Kolar. Disney reuses some Legacy codes across characters.
+- **Some codes are shared across hilts** — `0xB2` is blue on Kanan, Devon, Agen
+  Kolar, Skywalker Reforged and Leia Organa (and the blue state of Ahsoka TCW). Disney
+  reuses some Legacy codes across characters.
+- **idx 5 is a dedicated white slot, not just a Cal Kestis stop.** The Ahsoka Tano Rebels (Black Inlay)
+  set lives on `0x35`/`0xB5`/`0x55` full-time — the first dedicated-white Legacy hilt captured. Both
+  hilts in the set are byte- and timing-identical (only their refresh clocks differ: 1004 vs 1016 ms).
 - **Some codes are character-specific shades** — Cal Kestis red (`0xB4`) and Maul
   "blood red" (`0xB8`) both read as red but use different bytes; Maul's is a
   noticeably deeper crimson.
@@ -223,6 +227,8 @@ same physical signal for each folded pair.
 
 These are the canonical **render targets** for any blade aiming to match stock
 rendering: 99% for a single primary, 60% for two-color mixes, 44% for white.
+The 44% white fold is family-independent: a Legacy white hilt (`0xB5`, Ahsoka Tano Rebels) drives
+R/G/B at 43.8% each, one PWM signal in phase on all three gates — the same number the Savi white crystal gets.
 
 ---
 
@@ -233,7 +239,10 @@ tracks the **physical hilt platform**, not the opcode family:
 
 - **Savi's Workshop hilts:** ~706–739 ms (condition-dependent; battery state appears
   to shift it within this band).
-- **Legacy character hilts:** ~1005–1013 ms across current-generation hilts.
+- **Legacy character hilts:** ~998–1015 ms across current-generation hilts
+  (Leia Organa is the low end at 998.34 ms, n=83; Ahsoka TCW the high end at ~1015 ms).
+  The per-unit clocks are all tight (σ well under 1 ms), so where a hilt sits in the
+  band is a unit fingerprint, not a protocol difference.
 
 Rey is the tell: she emits the *Savi* opcode family (`0xAB`) yet refreshes at
 ~1005 ms like the Legacy hilts, because she is a Legacy-platform hilt. Ezra's Second
@@ -271,7 +280,7 @@ visible flash count matches the byte count:
 | Hilt | Clash pattern |
 |------|---------------|
 | Savi (all) | 1 byte per strike |
-| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious | 1:1 single |
+| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano Rebels (main + shoto) | 1:1 single |
 | **Maul staff LONG halves** | **Cycling (1, 3, 1, 4), period 4, repeats indefinitely** — phase does not reset per ignition |
 | **Maul staff SHORT half** | 1:1 single — same bytes as the longs, different clash firmware |
 | **Qui-Gon Jinn** | Random/intermittent double (~30–48%, session-variable), doubles ~135–190 ms apart |
@@ -287,10 +296,12 @@ apart (a tight pair) with later bytes spaced wider.
 *after* the `0xC0`, one or more otherwise-off gates rise for ~35–40 ms, then fall —
 a hue shift while the segments stay fully on. On the Legacy hilts the pulse depends
 on the color index. Blue and green hilts flash **Red+Green full with Blue off** —
-a blue hilt (Ben Solo idx 9) drops its own gate for the flash, a green hilt (Ezra's
+a blue hilt (Ben Solo idx 9, Leia Organa idx 2) drops its own gate for the flash, a green hilt (Ezra's
 Second idx 12, Kit Fisto, Saesee Tiin) keeps green and adds full red — electrically
-yellow; at the bench it read as **white** on Ben Solo's blue blade and **yellow** on
-Ezra's green. Red hilts
+yellow; at the bench it read as **white** on the blue blades (Ben Solo, Leia Organa) and **yellow** on
+Ezra's green. The white hilts (Ahsoka Tano Rebels, idx 5) get the same drive — blue off, red + green
+full over a 44/44/44 white base — and there it reads plainly **yellow**, which is the cleanest evidence
+that the "white" flash on a blue blade is the eye blending the blue base with a yellow pulse. Red hilts
 (Vader and Sidious, idx 7) keep their red gate on and **add Green at 25% duty**
 for 33–80 ms — a lower-energy yellow-amber flash, seen as yellow at the bench, not
 white. So the flash is built relative to the steady color, not one fixed drive. On the Savi crystals the added color is per-crystal-slot specific (a
