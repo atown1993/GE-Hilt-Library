@@ -623,8 +623,12 @@ still open. Expect this section to grow and be restructured as captures land. Ca
 Notes on the new frames:
 
 - `0x15` is identical on blue and purple, so its low nibble is not a colour index. A
-  stock blade shows nothing for it. Its purpose is unknown until the new blade is on the
-  analyzer.
+  stock blade shows nothing for it. **It is the blade-identification query** (§16.2): the
+  hilt sends the same `0x15` to every blade; a Gen2 blade answers it, a Gen1 blade cannot,
+  and 257.6 ms after the end of an unanswered `0x15` the hilt sends the legacy ignite byte.
+  (Corrected 2026-10-18 — earlier text here and in §16.2 described the query as a
+  different frame; a pulse-for-pulse comparison of the stock-blade and Gen2-blade captures
+  shows the same byte.)
 - Re-igniting inside the 10.14 s post-off window (tested at 2 s and 5.4 s) sends the
   ignite byte alone; after `0x80` the next ignition is `0x15` → ignite again.
 - Idle with the blade off is silent: DATA high, gates and segments flat, zero edges in 10 s.
@@ -667,7 +671,8 @@ Measured: the hilt's data wire and the strip's data input carried the same strea
 sample-for-sample at 10 MHz (13,640 edges, zero offset), while being electrically separate
 nets. Every event in every capture — ignite, burn, twinkle, clash, twist shot, extinguish —
 is LED frames on the hilt wire; no `0x2X`/`0xAX`/`0x4X` byte is sent to the new blade after the
-connect handshake (16.2).
+connect handshake (16.2). The only legacy bytes the Gen2 hilt sends its own blade are the `0x15`
+query (16.2) and the post-extinguish `0x80` (17.4).
 
 The blade's own microcontroller (Sonix SNC85F150, with its ICP programming header exposed on
 the control board) exists for **old hilts**. A Gen1 Savi's hilt driving the new blade sent only
@@ -687,20 +692,31 @@ fixed by purple = R + B with G = 0.
 
 ### 16.2 How the hilt knows which blade it has — a handshake at connect
 
-Measured twice, byte-identical, from the moment the blade gets V+:
+Measured at power-up (two 1 MHz takes) and on every wake from the parked-HIGH state (31 staged
+takes, all 10 MHz, every one byte-identical), from the moment the blade gets V+:
 
 | t | hilt wire | strip input | |
 |---|---|---|---|
-| 0 | HIGH 29 ms | same | power-up; the line idles HIGH (legacy-mode level) |
-| +30 ms | one blank 60-LED frame | same | clears the strip |
-| +216 ms | **query**: two 17.0 ms LOW preambles, then a bit train modulated in 1.2 / 2.4 ms units on **both** levels (not the §1 format, which modulates LOWs only), then 12.5 / 12.3 / 12.2 ms turnaround | nothing | |
+| 0 | HIGH 29 ms | LOW | power-up; the hilt line idles HIGH (legacy-mode level) |
+| +30 ms | a sub-ms blip only | one blank 60-LED frame | the blade clears its own strip on boot (strip-only; 1 MHz takes — a 10 MHz power-up take is still wanted) |
+| +216 ms | **query = the legacy `0x15` byte**: two 17.0 ms LOW preambles, then the eight bits `0001 0101` in the §1 LOW widths (2.4 ms = 0, 1.2 ms = 1), pulse-identical to the `0x15` the hilt sends a Gen1 blade (§15) through bit 7 | nothing | |
+| bit 8 | the final 1.2 ms LOW is **held LOW for 12.5 ms**, then HIGH 12.3 ms, LOW 12.2 ms | **one blank 60-LED frame** 6.15 ms into the held LOW (2 takes at 10 MHz) | the blade has recognised `0x15`; who sinks the line during the 12.5 ms hold is not measurable with a logic analyzer alone (most likely the blade — see note) |
 | +331 ms | **answer**: 1 ms / 2 ms pulse train, 15 intervals `2 2 2 2 1 2 1 1 2 1 1 1 2 2 1` | same | originates on the blade side; identical every time — a fixed blade-ID code |
 | +355 ms → | idles LOW | | LED-frame mode from here on |
 
-The same query/answer runs again when the hilt wakes from a longer idle (minutes); a 30 s idle
-wake went straight to LED frames. The sleep timing itself is measured in §17.4. A Gen1 blade never answers, which is why the Gen2 hilt
-speaks legacy bytes to it (§15 — the `0x15` wake frame seen there was never sent to the Gen2
-blade in any capture).
+With a Gen1 blade the same `0x15` ends with a plain 1.2 ms bit 8, the line idles HIGH, and the
+legacy ignite byte follows 257.6 ms later (§15). So the hilt does not sense the blade type; it asks,
+and only a Gen2 blade can answer. The same exchange runs again on every wake from the parked-HIGH
+state that follows the post-extinguish `0x80` (§17.4). One 10-11 take labelled "wake after a
+30 s idle" opens on LED frames with no handshake and the line already LOW; the take does not
+record whether the `0x80` had fired first, so it says nothing about the handshake rule either way.
+
+Note on the 12.5 ms hold: with a Gen1 blade the hilt releases bit 8 after 1.2 ms, so for the hilt
+to hold it longer it would already have to know a Gen2 blade is there — while the blade
+demonstrably reacts inside that window (blank frame at +6 ms). The simplest reading is that the
+blade pulls the line LOW on top of the hilt's last bit as an acknowledgement, then clocks out its
+ID. This is an inference, not a measurement; a blade emulator that answers without pulling the
+line will settle it.
 
 ### 16.3 The pixel stream
 
@@ -777,16 +793,23 @@ clash (both crystals).
 
 ### 17.4 Sleep and wake — measured
 
-- **9.05–9.08 s after extinguish** (three captures) the hilt sends a short message on the hilt
-  wire — a 17 ms preamble, then an 8-symbol train in the 1.2 / 2.4 ms units of the §16.2 query —
-  and parks the line **HIGH**. With the blade off and hands off, the hilt wire then sits flat HIGH
-  and the strip input flat LOW (idle takes, 2.5 min after extinguish).
-- **Wake from that state**: a short exchange (17 ms, then a 12.2 ms turnaround) ~0.2 s before the
-  first LED frame; the blade does not answer (three captures).
-- **Wake after ~10 min** (two captures) and after ~2 days (one): the **full connect handshake** of
-  §16.2 — query, then the blade's 15-symbol answer, byte-identical to the 10-11 captures.
-- So there are two levels: a light sleep at 9 s that needs no re-handshake, and a deeper sleep,
-  somewhere between 30 s and 10 min, after which the hilt re-identifies the blade.
+- **9.05–9.08 s after extinguish** (three captures) the hilt sends the legacy **`0x80`** post-off
+  byte on the hilt wire — the same byte it sends a Gen1 stock blade at 10.14 s (§15). Because the
+  line idles LOW in LED mode the frame reads as HIGH 17.0 ms / LOW 17.0 ms / HIGH 2.4 ms and then
+  the bits `1000 0000` as LOW widths. It is **passed through to the strip input sample-identical**
+  (the blade is still forwarding at that moment; 1–2 ms pulses are reset-length idle to the LEDs),
+  the blade does not answer it, the hilt holds LOW 26.7 ms and then parks the line **HIGH**. With
+  the blade off and hands off, the hilt wire then sits flat HIGH and the strip input flat LOW
+  (idle takes, 2.5 min after extinguish).
+- **Wake from that parked state** — whether 7 s, ~10 min or ~2 days later (eight captures) — is
+  the **full connect handshake** of §16.2: `0x15`, the 12.5 / 12.3 / 12.2 ms hold, the blade's
+  15-symbol answer, byte-identical to the 10-11 captures. The `0x15` does **not** appear on the strip,
+  so the blade leaves pass-through on the `0x80`. (Corrected 2026-10-18: this entry previously said
+  the blade does not answer a wake from the 9 s state; no capture in the set supports that.)
+- So the one sleep boundary actually measured is the `0x80` at ~9 s: after it, the next activity
+  re-identifies the blade. Whether a pause inside LED mode (line LOW, before the `0x80`) ever
+  needs a handshake has not been captured deliberately — the 10-11 "30 s idle" take (§16.2) opens
+  mid-stream and cannot answer it.
 
 ### 17.5 A Gen1 hilt with the cracked crystal
 
