@@ -647,7 +647,7 @@ Notes on the new frames:
   connection, and two data lines feeding a double-sided addressable LED board.
 
 **Session two (2026-10-11) is §16:** the hilt driving its own new blade, and a Gen1 hilt
-driving the new blade. Still to come: the other crystals, no-crystal / cracked-crystal, spin.
+driving the new blade. Cracked crystals: §17; red, yellow and the stab effect: §18.
 
 ## 16. Savi's Workshop Gen2 — the new blade: the hilt streams the pixels
 
@@ -825,5 +825,56 @@ same post-off `0x80` pair seen on Neopixel-blade and Legacy-hilt captures and ne
 blade (§8-era notes): a post-extinguish blade check that the Gen2 blade fails. The Gen2 hilt
 never does this.
 
-**Still to come:** the seven solid crystals, no-crystal, tip drag, deflection, spin.
+**Still to come:** blue, green, white, orange, teal; no-crystal; deflection; spin. (Red and yellow, and the
+stab effect on every crystal captured so far, are in §18.)
+
+## 18. Savi's Workshop Gen2 — solid colours and the stab effect
+
+Session four (2026-10-19), same rig as §16/§17 with one change: a second, short analyzer ground
+lead at the LED strip's GND pad next to its data input. Without it the strip-input channel dropped
+bits at 10 MHz (20–80 ns notches ~100 ns after rising edges, at ~24.75 kHz — ground bounce in the
+probe reference, not the data; a 50 MHz take showed the strip pulses match the hilt wire to within
+20 ns). DSView stream mode, 10 MHz, hilt wire + strip input, no trigger; every take decoded from the
+hilt wire (`CH=1 tools/frame_timeline.py`). Two solid crystals, the full set each
+([`red/`](captures/savis-gen2-blade/red/), [`yellow/`](captures/savis-gen2-blade/yellow/)), plus a
+new **stab** take on every crystal captured to date.
+
+### 18.1 Red and yellow — one program, a colour palette each
+
+The cracked crystals of §17 run their own program. The solid colours do not: red and yellow run the
+same scripted program as purple (§16.4) — the fixed twinkle loop, the laser-shot twist, the clash
+flash — with a per-colour palette. Red and yellow never change colour on a twist (12 and 13 shots,
+plus 5 re-ignites after twists: always the crystal's own colour).
+
+| Effect | Red `(0,56,0)` | Yellow `(24,30,0)` |
+|---|---|---|
+| **Ignite** | base → tip in 0.24 s, ~6 LEDs per 24 ms frame; a **yellow** `(127,127,0)` leading edge, the base settling to R58 in ~5 frames | the same wipe; the leading band is **white** `(~40,40,40)`, ~10 LEDs deep, base yellow `(26,33,0)` within ~4 frames |
+| **Burn** | uniform R56. Twinkle loop **1.229 s** (16 cycles): LEDs 4/5 → 13 → 21 → 29/30 → 37/38 → 0 → 11 → 23 → 41 — the same positions and peak values as the Ben Solo blue loop (§17.3) | uniform `(24,30,0)` — red driven 1.25× green, a gold leaning yellow. Twinkle loop **1.241 s**, same positions, the sparkles neutral (R=G, 36–77) |
+| **Clash** | one all-off frame (27–33 ms), one full-blade `(26,30,0)` yellow frame (45–57 ms), back to red; twinkle loop restarts at LED 0 | **no all-off frame**: one full-blade `(19,22,14)` pale frame (~50 ms) at burn brightness, then yellow again — barely visible by eye; loop restarts at LED 0 |
+| **Twist** | the laser shot of §16.4 — bolt head `(100,127,0)` yellow-orange, base → tip in ~0.33 s, fading tail, blade stays R56; 12 of 12 identical | the same shot with a **white** head `(76,76,76)` and a ~40-LED fading white tail; 13 of 13 identical |
+| **Extinguish** | tip → base 0.64 s, 5–6 LEDs per 64 ms frame, base tail 56 → 51 → 40 → 29 → 18 → 7 | tip → base 0.6 s, base steps to `(28,35,0)` then dims as a gradient toward the tip, tail 35 → 32 → 25 → 19 → 11 → 4 |
+| **Sleep / wake** | `0x80` 9.03 s after the last frame; wake = the full §16.2 handshake | the same |
+
+The pattern across the three solid colours now measured: every accent the program draws in
+**yellow** — the ignite front, the clash flash, the bolt head — is drawn in **white** on the yellow
+crystal, where yellow would vanish against the blade. Red and purple keep the yellow accents.
+
+### 18.2 The stab effect — measured on six crystal states
+
+**Trigger:** thrust the blade forward and stop it abruptly. The hilt's motion sensor sometimes reads
+the attempt as a clash instead (1 of 20 attempts here). Captured on red, yellow, purple, Kylo cracked
+(red state and, after a twist, blue state) and Ben Solo cracked — 19 stabs in six takes
+(`…-stab-10MHz-2026-10-19.dsl` in each crystal's folder; the Kylo blue-state take is `…-stab-blue-…`).
+
+| | On the wire |
+|---|---|
+| **Where** | the five LEDs below the tip (indices 49–53) and the tip LED (54). The rest of the blade is untouched — it keeps its colour, and on the Kylo red side the brightness wander pauses and the body holds a uniform R56 for the duration. |
+| **Tip LED** | pure **red** `(0,R,0)` on every crystal, red and blue included. |
+| **Band** | **yellow** `(W,W,0)` on red, purple, Kylo-red, Kylo-blue and Ben Solo; **white** `(W,W,W)` on the yellow crystal — the same substitution as §18.1. |
+| **Brightness** | a fixed 21-frame script (22 on yellow), byte-identical on all 19 stabs: four ramp frames (band 44 → 49 → 53 → 57) then a flicker 57–116. The tip follows the band at a fixed ratio: 0.60× when the band is yellow (so the tip is *dimmer* than a red body for most of the effect), 1.62× when it is white. |
+| **Timing** | frames every ~80–90 ms during the effect (the normal ~65 ms cadence slows), 1.6–1.8 s, then two fade frames blending the band back into the blade colour. The twinkle loop restarts at LED 0 afterwards, as after a clash. On purple only, one all-off frame is sent 3 ms before the restart frame. |
+| **Sound** | a distinct stab sound plays with it (heard at the bench; not captured — audio stays in the hilt). |
+
+So the stab is a tip effect, not a blade-wide one, and like every other effect it is rendered by the
+hilt: the blade only forwards the frames.
 

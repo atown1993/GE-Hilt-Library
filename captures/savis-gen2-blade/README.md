@@ -49,3 +49,18 @@ decode cleanly from either channel; in the `ben-solo-cracked/` set the CH0 lead 
 | `gen1-hilt-kylo-cracked/…-ign` | a **Gen1** Savi's hilt with the Kylo cracked crystal: legacy bytes, then `0x80` ×2 + the disconnect sound |
 
 Findings: `CATALOG.md` §17.
+
+## Session four — 2026-10-19: red, yellow, and the stab effect
+
+Same rig plus a second, short analyzer ground lead at the strip's GND pad beside its data input
+(it stops the strip-input channel dropping bits at 10 MHz). All takes **DSView stream mode, 10 MHz,
+CH0 + CH1, no trigger**; decode CH1.
+
+| File | What |
+|---|---|
+| `red/…-wake`, `…-ign`, `…-burn`, `…-clash`, `…-twist` (50 s), `…-twist-2` (re-ignites after twists), `…-cyc` (50 s, 15 strikes), `…-idle` | the standard set, plain red crystal |
+| `yellow/…-wake`, `…-ign`, `…-burn`, `…-clash`, `…-twist` (50 s), `…-cyc` (50 s), `…-idle` | the standard set, plain yellow crystal |
+| `red/…-stab`, `yellow/…-stab`, `purple/…-stab`, `kylo-cracked/…-stab`, `kylo-cracked/…-stab-blue` (twist to blue first), `ben-solo-cracked/…-stab` | the **stab** effect: blade on → three or four forward thrusts stopped abruptly → off |
+
+Findings: `CATALOG.md` §18.
+
