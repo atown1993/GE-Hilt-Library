@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano (Rebels — Black Inlay, main + shoto), and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano (Rebels — Black Inlay, main + shoto), Plo Koon, and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -101,7 +101,8 @@ hilts that emit it — for example **Rey Skywalker = Savi-family idx 11 (`0xAB`)
 rendering yellow. Rey's yellow at idx 11 is a different index than Savi kyber yellow
 (`0xA3` = idx 3): a per-character slot, not a raw color code. **Ezra's Second (Ezra
 Bridger's second saber) = Savi-family idx 12 (`0xAC`)**, rendering green — not the Legacy
-idx-6 green (`0xB6`) that Qui-Gon, Kit Fisto and Saesee Tiin use.
+idx-6 green (`0xB6`) that Qui-Gon, Kit Fisto and Saesee Tiin use. **Plo Koon = Savi-family idx 6
+(`0xA6`)**, rendering blue — the same bytes Cal Kestis and Master Sol use for their blue states.
 
 ### Color low-nibble table — Legacy family (`0xBX`)
 
@@ -239,10 +240,14 @@ tracks the **physical hilt platform**, not the opcode family:
 
 - **Savi's Workshop hilts:** ~706–739 ms (condition-dependent; battery state appears
   to shift it within this band).
-- **Legacy character hilts:** ~998–1015 ms across current-generation hilts
-  (Leia Organa is the low end at 998.34 ms, n=83; Ahsoka TCW the high end at ~1015 ms).
-  The per-unit clocks are all tight (σ well under 1 ms), so where a hilt sits in the
-  band is a unit fingerprint, not a protocol difference.
+- **Legacy character hilts:** ~995–1016 ms across current-generation hilts
+  (Plo Koon is the low end at 994.91 ms, n=83; the Ahsoka Tano Rebels shoto the high end at
+  1016.16 ms). Where a hilt sits in the band is a unit fingerprint, not a protocol difference.
+  Each clock is steady from one refresh to the next, but over a burn it runs slightly fast:
+  on every 84 s steady-burn in the set the interval shortens by roughly 1–3 ms from ignition
+  to the end of the burn. Plo Koon slides furthest — about 1000 ms right after ignition down
+  to about 994 ms — and starts back near 1001 ms at each new ignition. Read a cadence
+  fingerprint as the mean over an ~84 s burn from ignition.
 
 Rey is the tell: she emits the *Savi* opcode family (`0xAB`) yet refreshes at
 ~1005 ms like the Legacy hilts, because she is a Legacy-platform hilt. Ezra's Second
@@ -280,7 +285,7 @@ visible flash count matches the byte count:
 | Hilt | Clash pattern |
 |------|---------------|
 | Savi (all) | 1 byte per strike |
-| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano Rebels (main + shoto) | 1:1 single |
+| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano Rebels (main + shoto), Plo Koon | 1:1 single |
 | **Maul staff LONG halves** | **Cycling (1, 3, 1, 4), period 4, repeats indefinitely** — phase does not reset per ignition |
 | **Maul staff SHORT half** | 1:1 single — same bytes as the longs, different clash firmware |
 | **Qui-Gon Jinn** | Random/intermittent double (~30–48%, session-variable), doubles ~135–190 ms apart |
@@ -296,10 +301,10 @@ apart (a tight pair) with later bytes spaced wider.
 *after* the `0xC0`, one or more otherwise-off gates rise for ~35–40 ms, then fall —
 a hue shift while the segments stay fully on. On the Legacy hilts the pulse depends
 on the color index. Blue and green hilts flash **Red+Green full with Blue off** —
-a blue hilt (Ben Solo idx 9, Leia Organa idx 2) drops its own gate for the flash, a green hilt (Ezra's
+a blue hilt (Ben Solo idx 9, Leia Organa idx 2, Plo Koon Savi-family idx 6) drops its own gate for the flash, a green hilt (Ezra's
 Second idx 12, Kit Fisto, Saesee Tiin) keeps green and adds full red — electrically
-yellow; at the bench it read as **white** on the blue blades (Ben Solo, Leia Organa) and **yellow** on
-Ezra's green. The white hilts (Ahsoka Tano Rebels, idx 5) get the same drive — blue off, red + green
+yellow; at the bench it read as **white** on Ben Solo and Leia Organa, **yellow** on Plo Koon's blue
+(12 of 12 strikes), and **yellow** on Ezra's green. The white hilts (Ahsoka Tano Rebels, idx 5) get the same drive — blue off, red + green
 full over a 44/44/44 white base — and there it reads plainly **yellow**, which is the cleanest evidence
 that the "white" flash on a blue blade is the eye blending the blue base with a yellow pulse. Red hilts
 (Vader and Sidious, idx 7) keep their red gate on and **add Green at 25% duty**
@@ -505,7 +510,11 @@ ignition, extinguish-delay, extinguish, and refresh cadence — are in
 - **Ezra's Second extinguish byte.** Ezra's Second runs steady on Savi `0xAC` (idx 12,
   green) and extinguishes with `0x40` (Savi idx 0) instead of `0x4C` — on every arc in the
   catalog set (4/4). On a stock blade the extinguish looks normal: each segment dims then
-  goes out, tip first — the same stepped segment fade other hilts show.
+  goes out, tip first — the same stepped segment fade other hilts show. **Plo Koon** does
+  the same on Savi-family idx 6: steady `0xA6`, extinguish `0x40` on 4/4 arcs, where Cal Kestis
+  and Master Sol extinguish their `0xA6` blue with `0x46`. So the `0x40` extinguish is shared by
+  two hilts on two different indexes, not a one-off. Both close every arc with a single `0x80`.
+  Plo Koon's blade retracts blue — red and green stay off after the `0x40`.
 - **Baylan blade-detection lockout.** The Baylan hilt refuses to drive the protocol
   at all when paired with a non-original blade — the wire stays essentially silent.
   With its own keyed blade it runs normally. This is hilt-side blade detection gating

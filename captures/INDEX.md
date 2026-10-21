@@ -1,6 +1,6 @@
 # Capture Index
 
-263 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+270 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -430,6 +430,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 |---|---|---|
 | [`legacy-obiwan-12ch-ignite-clash-ext-1MHz-2026-05-09.dsl`](legacy/obiwan/legacy-obiwan-12ch-ignite-clash-ext-1MHz-2026-05-09.dsl) | 1MHz | 2026-05-09 |
 | [`legacy-obiwan-8ch-ignite-clash-ext-200kHz-2026-08-28.dsl`](legacy/obiwan/legacy-obiwan-8ch-ignite-clash-ext-200kHz-2026-08-28.dsl) | 200kHz | 2026-08-28 |
+
+### Plokoon  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-plokoon-8ch-ignite-clash-ext-200kHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-8ch-ignite-clash-ext-200kHz-2026-10-20.dsl) | 200kHz | 2026-10-20 |
+| [`legacy-plokoon-8ch-ignite-ext-1MHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-8ch-ignite-ext-1MHz-2026-10-20.dsl) | 1MHz | 2026-10-20 |
+| [`legacy-plokoon-8ch-ignite-ext-freerun-1MHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-8ch-ignite-ext-freerun-1MHz-2026-10-20.dsl) | 1MHz | 2026-10-20 |
+| [`legacy-plokoon-clashcycle-12-200kHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-clashcycle-12-200kHz-2026-10-20.dsl) | 200kHz | 2026-10-20 |
+| [`legacy-plokoon-gatepwm-10MHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-gatepwm-10MHz-2026-10-20.dsl) | 10MHz | 2026-10-20 |
+| [`legacy-plokoon-idle-200kHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-idle-200kHz-2026-10-20.dsl) | 200kHz | 2026-10-20 |
+| [`legacy-plokoon-steadyburn-100kHz-2026-10-20.dsl`](legacy/plokoon/legacy-plokoon-steadyburn-100kHz-2026-10-20.dsl) | 100kHz | 2026-10-20 |
 
 ### Quigon  ·  8 capture(s)
 
