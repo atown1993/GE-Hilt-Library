@@ -647,7 +647,9 @@ Notes on the new frames:
 **Other observations:**
 
 - **Orange and teal crystals are refused.** Misfire sound, same as no crystal; on the
-  wire only the `0x15` wake frame, no ignite byte, gates and segments flat.
+  wire only the `0x15` wake frame, no ignite byte, gates and segments flat. (With the
+  Gen2 blade at 10 MHz that `0x15` is the full blade handshake, answered by the blade —
+  the hilt identifies the blade first and refuses the crystal afterwards; §18.4.)
 - **Tip drag / stab** (three attempts) produced no frame and no gate change on the stock
   blade.
 - **Hilt LEDs** blink for about a minute after power-up; after an ignite + extinguish they
@@ -656,7 +658,8 @@ Notes on the new frames:
   connection, and two data lines feeding a double-sided addressable LED board.
 
 **Session two (2026-10-11) is §16:** the hilt driving its own new blade, and a Gen1 hilt
-driving the new blade. Cracked crystals: §17; red, yellow and the stab effect: §18.
+driving the new blade. Cracked crystals: §17; the solid colours and the stab effect: §18;
+orange, teal and no crystal on the Gen2 blade: §18.4; the whole model on one page: §19.
 
 ## 16. Savi's Workshop Gen2 — the new blade: the hilt streams the pixels
 
@@ -707,7 +710,7 @@ takes, all 10 MHz, every one byte-identical), from the moment the blade gets V+:
 | t | hilt wire | strip input | |
 |---|---|---|---|
 | 0 | HIGH 29 ms | LOW | power-up; the hilt line idles HIGH (legacy-mode level) |
-| +30 ms | a sub-ms blip only | one blank 60-LED frame | the blade clears its own strip on boot (strip-only; 1 MHz takes — a 10 MHz power-up take is still wanted) |
+| +30 ms | a sub-ms blip only | one blank 60-LED frame | the blade clears its own strip on boot (strip-only; +29 ms in five 10 MHz power-up takes, §18.4) |
 | +216 ms | **query = the legacy `0x15` byte**: two 17.0 ms LOW preambles, then the eight bits `0001 0101` in the §1 LOW widths (2.4 ms = 0, 1.2 ms = 1), pulse-identical to the `0x15` the hilt sends a Gen1 blade (§15) through bit 7 | nothing | |
 | bit 8 | the final 1.2 ms LOW is **held LOW for 12.5 ms**, then HIGH 12.3 ms, LOW 12.2 ms | **one blank 60-LED frame** 6.15 ms into the held LOW (2 takes at 10 MHz) | the blade has recognised `0x15`; who sinks the line during the 12.5 ms hold is not measurable with a logic analyzer alone (most likely the blade — see note) |
 | +331 ms | **answer**: 1 ms / 2 ms pulse train, 15 intervals `2 2 2 2 1 2 1 1 2 1 1 1 2 2 1` | same | originates on the blade side; identical every time — a fixed blade-ID code |
@@ -760,9 +763,9 @@ Sonix ICP header; 3-wire ring connector, 18.5 mm. The hilt data line sees a weak
 (120–180 kΩ in-circuit; the blade MCU has none internally) — the usual 10 kΩ data → V+ on the
 tap rig applies.
 
-**Not yet captured:** the other seven solid crystals (incl. orange and teal, refused on the Gen1
-blade), no-crystal, tip drag, deflection, spin (needs a long-lead rig). Cracked crystals and the
-sleep/wake behaviour: §17.
+Cracked crystals and the sleep/wake behaviour: §17; red and yellow and the stab: §18.1–18.2;
+white, green, blue: §18.3; orange, teal and no crystal: §18.4. Deflection and spin were never
+triggered at the bench and have no capture (§19).
 
 ## 17. Savi's Workshop Gen2 — the cracked crystals: one program, two starting colours
 
@@ -834,8 +837,8 @@ same post-off `0x80` pair seen on Neopixel-blade and Legacy-hilt captures and ne
 blade (§8-era notes): a post-extinguish blade check that the Gen2 blade fails. The Gen2 hilt
 never does this.
 
-**Still to come:** blue, green, white, orange, teal; no-crystal; deflection; spin. (Red and yellow, and the
-stab effect on every crystal captured so far, are in §18.)
+(Red and yellow, and the stab effect, are in §18.1–18.2; white, green and blue in §18.3; orange, teal
+and no crystal in §18.4.)
 
 ## 18. Savi's Workshop Gen2 — solid colours and the stab effect
 
@@ -846,7 +849,8 @@ probe reference, not the data; a 50 MHz take showed the strip pulses match the h
 20 ns). DSView stream mode, 10 MHz, hilt wire + strip input, no trigger; every take decoded from the
 hilt wire (`CH=1 tools/frame_timeline.py`). Two solid crystals, the full set each
 ([`red/`](captures/savis-gen2-blade/red/), [`yellow/`](captures/savis-gen2-blade/yellow/)), plus a
-new **stab** take on every crystal captured to date.
+new **stab** take on every crystal captured to date. Session five (18.3, 18.4) added white, green,
+blue, and the refused-crystal power-ups, completing the set.
 
 ### 18.1 Red and yellow — one program, a colour palette each
 
@@ -868,7 +872,7 @@ The pattern across the three solid colours now measured: every accent the progra
 **yellow** — the ignite front, the clash flash, the bolt head — is drawn in **white** on the yellow
 crystal, where yellow would vanish against the blade. Red and purple keep the yellow accents.
 
-### 18.2 The stab effect — measured on six crystal states
+### 18.2 The stab effect — measured on six crystal states (nine after session five, 18.3)
 
 **Trigger:** thrust the blade forward and stop it abruptly. The hilt's motion sensor sometimes reads
 the attempt as a clash instead (1 of 20 attempts here). Captured on red, yellow, purple, Kylo cracked
@@ -887,3 +891,114 @@ the attempt as a clash instead (1 of 20 attempts here). Captured on red, yellow,
 So the stab is a tip effect, not a blade-wide one, and like every other effect it is rendered by the
 hilt: the blade only forwards the frames.
 
+
+### 18.3 White, green and blue — the solid-colour set is complete
+
+Session five (2026-10-21), same rig as 18.1/18.2 (shakedown take `white/…-shake`: 81/81 whole frames,
+0.21 % late rises on the strip channel). Full set on each crystal
+([`white/`](captures/savis-gen2-blade/white/), [`green/`](captures/savis-gen2-blade/green/),
+[`blue/`](captures/savis-gen2-blade/blue/); blue's first stab take registered no stab — kept as a
+gesture-recognition sample, the retake `…-stab-2` has three clean stabs). With these, every solid
+crystal the hilt accepts has been captured with the Gen2 blade: red, yellow, purple, white, green, blue.
+
+**The solid colours are one program.** Every solid crystal runs the same scripted loop with a palette:
+
+| Crystal | Burn `(G,R,B)` | Ignite front | Clash | Twist | Stab band |
+|---|---|---|---|---|---|
+| Red | `(0,56,0)` | yellow band | dark frame + `(26,30,0)` | yellow bolt | yellow |
+| Green | `(56,0,0)` | yellow band | dark frame + `(26,30,0)` | yellow bolt | yellow |
+| Blue | `(0,0,56)` | yellow band, bright `(127,127,0)` head | dark frame + `(26,30,0)` | yellow bolt; **blade dims B56 → B35 for the shot** | yellow |
+| Purple | `(0,30,24)` | yellow band | dark frame + `(26,30,0)` | yellow bolt; blade dims to `(0,17,15)` | yellow |
+| White | `(19,22,14)` | yellow band | dark frame + `(26,30,0)` | **yellow wedge** (see below) | yellow |
+| Yellow | `(24,30,0)` | white band | one pale `(19,22,14)` frame, no dark frame | white bolt | white |
+
+- **Burn:** red, green and blue are a single channel at 56; white and yellow are mixes. The twinkle loop
+  is the same on all six — period 1.23–1.25 s, the same LED positions (4/5 → 13 → 21 → 29/30 → 37/38
+  → 0 → 11 → 23 → 41), sparkling in the burn colour (neutral white sparkles, R=G=B 32–70, on white).
+- **Ignite** (0.24 s, ~6 LEDs per 24 ms frame) and **extinguish** (tip → base 0.6–0.7 s, base tail
+  56 → 51 → 40 → 29 → 18 → 7 or scaled) are identical scripts on every colour; white's tip LED lands
+  `(23,23,3)`, green's `(36,36,0)`.
+- **The clash is one fixed sequence, not a per-crystal colour:** one all-dark frame (21–34 ms), one
+  full-blade `(26,30,0)` frame (42–52 ms), back to the burn colour, twinkle loop restarts at LED 0 —
+  byte-identical on red, white, green, blue, purple and both cracked crystals (60+ events). What the eye
+  sees is contrast: the same amber frame reads **red** on a green blade (the body has no red at all),
+  **yellow** on white and blue. Only the yellow crystal differs (18.1). Fifteen strikes in a row change
+  nothing — no colour or mode shift, nothing else on the wire.
+- **Twist has two scripts.** The **bolt** (red, green, blue, purple, and white-headed on yellow): head
+  `(100,127,0)` launched from LED 0, ~10–11 LEDs per ~40 ms frame, 9 frames ≈ 0.32 s, a fading tail up to
+  ~40 LEDs; the body stays at burn except that blue dims the whole blade to B35 and purple to `(0,17,15)`
+  for the shot's duration, then snaps back. The **wedge** (white only): three frames ~90 ms apart, a yellow
+  gradient (G=R ramping ~20 → 77, B held at white's 14) over LEDs 0–20, then 12–42, then 33–54, then
+  straight back to white — ~0.27 s. Each crystal's shots are identical to one another (white 11, green 8,
+  blue 7 shots this session; red 12, yellow 13, purple 12 before).
+- **Stab** (18.2) holds on white, green and blue — tip LED pure red, band LEDs 49–53 yellow `(W,W,0)`,
+  LEDs 0–48 untouched, 19 frames / 1.4–1.7 s — nine more stabs, same script. The §18.2 count is now
+  28 stabs on nine crystal states.
+- **Sleep:** `0x80` 9.03–9.06 s after the last frame on all three (`…-idle` takes); wake = the full §16.2
+  handshake. Seven crystals measured now; the number does not vary with colour.
+
+Observed at the bench, not on the wire: on the white blade the twist reads as a short group of yellow
+pixels shooting hilt → tip; on green the clash and the bolt read red; on blue the bolt reads as a pale
+warm-white streak (the dimmed blue under the yellow head).
+
+### 18.4 Orange, teal and no crystal — the hilt handshakes, then never ignites
+
+Five power-up takes, 50 s stream at 10 MHz, battery out → in with the blade connected
+([`orange/`](captures/savis-gen2-blade/orange/) ×3, [`teal/`](captures/savis-gen2-blade/teal/),
+[`no-crystal/`](captures/savis-gen2-blade/no-crystal/)). The §15 line "only the `0x15` wake frame" was
+a stock-blade observation at 200 kHz; with the Gen2 blade at 10 MHz the whole exchange is visible:
+
+- **+29 ms after battery-in:** the blade clears its strip with one blank 60-LED frame (strip input
+  only; the hilt wire shows a 29 ms HIGH blip). This is the §16.2 "+30 ms" row, now at 10 MHz, 5 of 5.
+- **+2.67 s:** the **full `0x15` handshake** — the blade's 12.4 ms ACK hold, HIGH 12.3 / LOW 12.3,
+  the 15-symbol blade ID — identical to a good crystal. **The handshake does not depend on the crystal
+  at all**: orange, teal and an empty crystal slot all get it.
+- **Then nothing.** Ignite attempts and strikes put zero edges on the wire — no ignite byte, no LED
+  frame. The misfire is decided inside the hilt after it has identified the blade. The line sits LOW
+  from the end of the ID (the blade is in pass-through, waiting for frames that never come).
+- The hilt still **sleeps**: the normal `0x80` arrives (4 of 5 takes; one orange take sent none in
+  47 s), the line parks HIGH, and a later ignite attempt **wakes it with a full handshake again** —
+  and still no ignite. How long after a refused power-up the `0x80` comes is not a fixed timer (10 to
+  38 s after the handshake across the four takes) and is not reported as a number here.
+
+## 19. Savi's Workshop Gen2 — the model, in one page
+
+Five sessions (§15–§18), 100 published captures, every crystal the hilt accepts plus the two it refuses
+and none. This is the whole of what the captures say about how the Gen2 hilt and the Gen2 blade talk.
+
+**The hilt is a pixel renderer; the blade is a wire.** After a handshake at connect the hilt generates
+WS2812-style LED frames (1.55 µs bits, G-R-B, 60 LEDs per frame) and sends them down the ordinary
+3-wire hilt connection; the blade passes them through to the strip sample-for-sample. Every effect —
+ignite, burn, clash, twist, stab, extinguish, the cracked-crystal flip — is drawn by the hilt. The
+blade's own microcontroller exists for **old** hilts: given legacy bytes it renders a plain wipe and a
+flat burn itself (§16.5, §17.5).
+
+**Connect (§16.2):** +29 ms after V+ the blade blanks its strip; +2.67 s (or at once, on a wake) the
+hilt sends the legacy `0x15`; the blade holds the last bit LOW 12.5 ms as an acknowledgement, the line
+toggles HIGH 12.3 / LOW 12.2, and the blade clocks out a fixed 15-symbol ID. The line then idles LOW and
+the hilt streams frames. A Gen1 blade cannot answer, and 257.6 ms later the hilt falls back to legacy
+bytes (§15). The handshake runs on every wake from the parked state and does not depend on the
+crystal — a refused crystal or none at all still gets it (§18.4).
+
+**Stream (§16.3):** frames only when the picture changes — ~24 ms apart during ignition, ~60–65 ms in
+the burn twinkle, 80–90 ms during a stab, up to ~300 ms when static. The hilt never polls the blade
+between frames. The blade's pass-through accepts standard WS2812 timing and any frame length (measured
+with an emulator: 55, 61 and 120 LEDs all forwarded), but only after a handshake.
+
+**Sleep (§17.4):** 9.03–9.08 s after the last frame the hilt sends the legacy `0x80` through to the strip,
+holds LOW ~25 ms and parks HIGH; the blade leaves pass-through. Any later activity re-handshakes.
+
+**What the crystal decides (§17, §18):** a program and a palette, nothing more. Solid crystals share one
+program — the same twinkle loop, ignite wipe, clash sequence, bolt (or, on white, wedge), stab and
+extinguish — with a burn colour and an accent colour: every accent is **yellow** `(G=R, B=0)`, except on
+the yellow crystal where every accent is **white**. The two cracked crystals run a second program that
+starts red or blue and flips on a twist. Orange and teal are refused after the handshake. The clash flash
+is the same `(26,30,0)` frame on every crystal but yellow; what it looks like is contrast against the body.
+
+**Not captured, deliberately left as questions:** how the hilt detects blade removal in LED mode;
+whether the hilt keys frame length on the blade ID (the blade forwards any length, so this is
+hilt-side); the deflection and spin gestures (never found at the bench); who drives the line LOW between
+frames on the real hilt (the blade does; the hilt's contribution is unmeasured).
+
+The capture programme for this hilt and blade is closed as of 2026-10-21. Corrections and additions
+through the usual submission route (`SUBMISSION-TEMPLATE.md`).

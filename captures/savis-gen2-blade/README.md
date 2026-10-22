@@ -64,3 +64,18 @@ CH0 + CH1, no trigger**; decode CH1.
 
 Findings: `CATALOG.md` §18.
 
+
+## Session five — 2026-10-21: white, green, blue, and the refused crystals
+
+Same rig as session four. All takes **DSView stream mode, 10 MHz, CH0 + CH1, no trigger**; decode CH1.
+Shakedown `white/…-shake` passed (81/81 whole frames, 0.21 % late rises on CH0). Solid-colour coverage
+is complete with this session; the capture programme for this hilt and blade is closed.
+
+| File | What |
+|---|---|
+| `white/…-shake`, `…-wake`, `…-ign`, `…-burn`, `…-clash`, `…-twist` (50 s), `…-stab`, `…-cyc` (50 s, 15 strikes), `…-idle` | the standard set, plain white crystal (plus the session shakedown) |
+| `green/…-wake`, `…-ign`, `…-burn`, `…-clash`, `…-twist` (50 s), `…-stab`, `…-cyc` (50 s), `…-idle` | the standard set, plain green crystal |
+| `blue/…-wake`, `…-ign`, `…-burn`, `…-clash`, `…-twist` (50 s), `…-stab-2`, `…-cyc` (50 s), `…-idle` | the standard set, plain blue crystal; `…-stab` is the first attempt in which no stab registered (7 clash reads + 2 twist shots) — a gesture-recognition sample, the retake `…-stab-2` has the three stabs |
+| `orange/…-powerup` (50 s), `…-powerup-2`, `…-powerup-3`, `teal/…-powerup`, `no-crystal/…-powerup` (30 s) | refused crystal / no crystal: battery out → start → battery in → ignite attempts → hands off. The full handshake 2.67 s after power, then no ignite byte and no frame; `…-powerup-2` includes a sleep `0x80` and a re-wake handshake |
+
+Findings: `CATALOG.md` §18.3, §18.4, and the one-page model in §19.

@@ -20,9 +20,10 @@ targets:
    color/mode encoding. This is the bulk of the current catalog — Savi's Workshop
    hilts across all eight kyber colors, plus a growing set of Legacy character
    hilts — and, as of Oct 2026, the **Savi's Workshop Gen2** chassis: on a stock
-   Gen1 blade (CATALOG §15) and on its own new addressable blade (CATALOG §16),
-   where the hilt turns out to stream WS2812-style LED frames itself. More
-   sessions to come.
+   Gen1 blade (CATALOG §15) and on its own new addressable blade (CATALOG §16–§18),
+   where the hilt turns out to stream WS2812-style LED frames itself. The Gen2
+   capture programme is complete — every accepted crystal, the two refused ones
+   and none — and the whole model is on one page in CATALOG §19.
 
 2. **Blade-internal signals (a target we want, more captures welcome).** A
    multi-channel view *inside* the blade drive — the individual segment-enable

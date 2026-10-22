@@ -1,6 +1,6 @@
 # Capture Index
 
-270 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+301 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -144,6 +144,33 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`savis-gen2-blade-ben-solo-cracked-twist-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-twist-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
 | [`savis-gen2-blade-ben-solo-cracked-wake-10MHz-2026-10-13.dsl`](savis-gen2-blade/ben-solo-cracked/savis-gen2-blade-ben-solo-cracked-wake-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
 
+### Gen2 hilt → Gen2 blade, Blue  ·  9 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-blue-burn-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-burn-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-clash-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-clash-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-cyc-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-cyc-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-idle-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-idle-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-ign-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-ign-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-stab-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-stab-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-stab-2-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-stab-2-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-twist-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-twist-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-blue-wake-10MHz-2026-10-21.dsl`](savis-gen2-blade/blue/savis-gen2-blade-blue-wake-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+
+### Gen2 hilt → Gen2 blade, Green  ·  8 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-green-burn-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-burn-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-clash-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-clash-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-cyc-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-cyc-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-idle-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-idle-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-ign-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-ign-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-stab-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-stab-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-twist-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-twist-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-green-wake-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-wake-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+
 ### Gen2 hilt → Gen2 blade, Kylo Cracked  ·  11 capture(s)
 
 | Capture file | Rate | Date |
@@ -159,6 +186,20 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`savis-gen2-blade-kylo-cracked-twist-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-twist-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
 | [`savis-gen2-blade-kylo-cracked-twist-2-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-twist-2-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
 | [`savis-gen2-blade-kylo-cracked-wake-10MHz-2026-10-13.dsl`](savis-gen2-blade/kylo-cracked/savis-gen2-blade-kylo-cracked-wake-10MHz-2026-10-13.dsl) | 10MHz | 2026-10-13 |
+
+### Gen2 hilt → Gen2 blade, No Crystal  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-no-crystal-powerup-10MHz-2026-10-21.dsl`](savis-gen2-blade/no-crystal/savis-gen2-blade-no-crystal-powerup-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+
+### Gen2 hilt → Gen2 blade, Orange  ·  3 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-orange-powerup-10MHz-2026-10-21.dsl`](savis-gen2-blade/orange/savis-gen2-blade-orange-powerup-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-orange-powerup-2-10MHz-2026-10-21.dsl`](savis-gen2-blade/orange/savis-gen2-blade-orange-powerup-2-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-orange-powerup-3-10MHz-2026-10-21.dsl`](savis-gen2-blade/orange/savis-gen2-blade-orange-powerup-3-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
 
 ### Gen2 hilt → Gen2 blade, Purple  ·  11 capture(s)
 
@@ -189,6 +230,26 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`savis-gen2-blade-red-twist-10MHz-2026-10-19.dsl`](savis-gen2-blade/red/savis-gen2-blade-red-twist-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
 | [`savis-gen2-blade-red-twist-2-10MHz-2026-10-19.dsl`](savis-gen2-blade/red/savis-gen2-blade-red-twist-2-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
 | [`savis-gen2-blade-red-wake-10MHz-2026-10-19.dsl`](savis-gen2-blade/red/savis-gen2-blade-red-wake-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
+
+### Gen2 hilt → Gen2 blade, Teal  ·  1 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-teal-powerup-10MHz-2026-10-21.dsl`](savis-gen2-blade/teal/savis-gen2-blade-teal-powerup-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+
+### Gen2 hilt → Gen2 blade, White  ·  9 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade-white-burn-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-burn-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-clash-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-clash-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-cyc-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-cyc-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-idle-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-idle-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-ign-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-ign-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-shake-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-shake-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-stab-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-stab-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-twist-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-twist-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+| [`savis-gen2-blade-white-wake-10MHz-2026-10-21.dsl`](savis-gen2-blade/white/savis-gen2-blade-white-wake-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
 
 ### Gen2 hilt → Gen2 blade, Yellow  ·  8 capture(s)
 
