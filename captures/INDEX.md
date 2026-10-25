@@ -1,6 +1,6 @@
 # Capture Index
 
-301 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+307 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -116,7 +116,7 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 
 ---
 
-## Savi's Workshop Gen2 — the new addressable blade (CATALOG §16–17)
+## Savi's Workshop Gen2 — the new addressable blade (CATALOG §16–20)
 
 ### Gen1 hilt → Gen2 blade, Kylo Cracked  ·  1 capture(s)
 
@@ -263,6 +263,22 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`savis-gen2-blade-yellow-stab-10MHz-2026-10-19.dsl`](savis-gen2-blade/yellow/savis-gen2-blade-yellow-stab-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
 | [`savis-gen2-blade-yellow-twist-10MHz-2026-10-19.dsl`](savis-gen2-blade/yellow/savis-gen2-blade-yellow-twist-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
 | [`savis-gen2-blade-yellow-wake-10MHz-2026-10-19.dsl`](savis-gen2-blade/yellow/savis-gen2-blade-yellow-wake-10MHz-2026-10-19.dsl) | 10MHz | 2026-10-19 |
+
+### Legacy hilt → Gen2 blade, Baylan  ·  3 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-baylan-gen2-blade-orange-clash-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-baylan/legacy-baylan-gen2-blade-orange-clash-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
+| [`legacy-baylan-gen2-blade-orange-ign-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-baylan/legacy-baylan-gen2-blade-orange-ign-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
+| [`legacy-baylan-gen2-blade-orange-shake-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-baylan/legacy-baylan-gen2-blade-orange-shake-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
+
+### Legacy hilt → Gen2 blade, Quigon  ·  3 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-quigon-gen2-blade-green-clash-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-quigon/legacy-quigon-gen2-blade-green-clash-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
+| [`legacy-quigon-gen2-blade-green-ign-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-quigon/legacy-quigon-gen2-blade-green-ign-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
+| [`legacy-quigon-gen2-blade-green-shake-10MHz-2026-10-25.dsl`](savis-gen2-blade/legacy-hilt-quigon/legacy-quigon-gen2-blade-green-shake-10MHz-2026-10-25.dsl) | 10MHz | 2026-10-25 |
 
 ---
 

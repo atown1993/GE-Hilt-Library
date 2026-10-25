@@ -520,6 +520,8 @@ ignition, extinguish-delay, extinguish, and refresh cadence — are in
   With its own keyed blade it runs normally. This is hilt-side blade detection gating
   protocol output; the other Legacy hilts captured all accept a compatible test blade.
   Blade keying is per-set (the LE set's orange blade unlocks both Baylan and Shin).
+  **Exception (2026-10-25):** the standalone Baylan drives the Savi's Workshop Gen2 blade
+  normally, with no keyed blade (§20).
 - **LE-set / box-set firmware splits.** Within a single product, two hilts can run
   different firmware: the Maul staff (long halves cycle clashes, short is 1:1) and the
   Baylan/Shin pair (different refresh cadence) both show this. By contrast, the
@@ -1001,4 +1003,44 @@ hilt-side); the deflection and spin gestures (never found at the bench); who dri
 frames on the real hilt (the blade does; the hilt's contribution is unmeasured).
 
 The capture programme for this hilt and blade is closed as of 2026-10-21. Corrections and additions
-through the usual submission route (`SUBMISSION-TEMPLATE.md`).
+through the usual submission route (`SUBMISSION-TEMPLATE.md`). Legacy character hilts on the
+same blade were added afterwards, in §20.
+
+## 20. Legacy character hilts on the Gen2 blade — orange works
+
+Two Legacy hilts on the same Gen2 blade rig as §16–§18 (stream 10 MHz, CH0 = strip IN1, CH1 = hilt
+DATA), three takes each (shakedown, two ignite cycles, clash), 2026-10-25: the standalone **Baylan
+Skoll** (orange) and **Qui-Gon Jinn** (green). Captures:
+[`legacy-hilt-baylan/`](captures/savis-gen2-blade/legacy-hilt-baylan/),
+[`legacy-hilt-quigon/`](captures/savis-gen2-blade/legacy-hilt-quigon/).
+
+The question this answers: a Gen2 Savi's hilt refuses an orange crystal (§18.4), so can the Gen2 blade
+show orange at all?
+
+- **The Baylan talks to the Gen2 blade.** The blade-detection lockout in §12.2 (silent on a non-original
+  test blade) does not trigger on this blade.
+- **Both hilts send exactly their Legacy bytes**, the same ones recorded on stock blades (§12). Baylan:
+  `0x3A` ignite, `0xBA` refresh every 2111 ms, `0x5A` extinguish, one `0xC0` per clash (5 of 5).
+  Qui-Gon: `0x36` ignite, `0xB6` refresh every ~1014 ms, `0x56` extinguish. Both send `0x80` twice
+  0.7–0.9 s after the extinguish byte. Neither sends the Gen2 `0x15` handshake: the blade's own
+  microcontroller does the drawing, as with a Gen1 Savi's hilt (§16.5, §17.5).
+- **The blade draws orange.** Legacy colour 10 burns at **(G3, R56, B0)** on every LED, redrawn once per
+  refresh byte, and it looks orange at the bench. For comparison the blade's red is (G0, R56, B0)
+  (§18.1). Qui-Gon's colour 6 burns (G56, R0, B0), green.
+- **Orange ignites slowly.** Baylan: base to tip in **0.673 s**, 13 frames 51.8 ms apart (4 LEDs per
+  frame), the same on 3 of 3 ignitions; retract 0.52 s. Qui-Gon: **0.311 s**, 6 frames, 4 of 4;
+  retract 0.57 s. A Gen1 Savi's hilt with a red crystal is also 0.311 s on this blade
+  ([`gen1-hilt-kylo-cracked/`](captures/savis-gen2-blade/gen1-hilt-kylo-cracked/)). At the bench the
+  orange tip lights just as the ignition sound ends. Not settled: whether the slow wipe belongs to
+  colour 10 or to the Baylan. Both hilts here send a `0x3X` ignite byte, so it is not the ignite-byte
+  family; a second orange hilt (Shin Hati, same colour 10, different firmware) would decide it and has
+  not been captured on this blade.
+- **Clash on orange:** one all-dark frame (~22 ms), one uniform **(G51, R51, B0)** yellow frame
+  (~42 ms), then orange again, the same on all 5 clashes. It is the same (51, 51, 0) flash the blade
+  draws for a Gen1 Savi's red (§17.5). After each clash the next refresh byte comes 1.38 s later
+  instead of 2.11 s. (This Qui-Gon unit's motion sensor is faulty, so no Qui-Gon clash was captured.)
+
+**What it means for orange.** The Gen2 blade can show orange. With an orange (or teal) crystal, the Gen2
+Savi's hilt refuses the crystal inside the hilt after the handshake and never asks the blade to ignite
+(§18.4). A Legacy hilt that is orange speaks the old byte language to the blade, and the blade lights
+orange.

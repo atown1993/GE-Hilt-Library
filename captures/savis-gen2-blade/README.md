@@ -79,3 +79,19 @@ is complete with this session; the capture programme for this hilt and blade is 
 | `orange/…-powerup` (50 s), `…-powerup-2`, `…-powerup-3`, `teal/…-powerup`, `no-crystal/…-powerup` (30 s) | refused crystal / no crystal: battery out → start → battery in → ignite attempts → hands off. The full handshake 2.67 s after power, then no ignite byte and no frame; `…-powerup-2` includes a sleep `0x80` and a re-wake handshake |
 
 Findings: `CATALOG.md` §18.3, §18.4, and the one-page model in §19.
+
+## Session six — 2026-10-25: Legacy character hilts on the Gen2 blade
+
+Same rig, unchanged since session five. DSView stream, 10 MHz, CH0 (strip IN1) + CH1 (hilt DATA), no
+trigger (CH2 left enabled and empty). Legacy hilts send slow LOW-pulse bytes on CH1, not LED frames:
+decode the bytes with `tools/decode_dsl.py -c 1` and the blade's LED frames from CH0
+(`CH=0 python3 tools/frame_timeline.py FILE.dsl`). Findings: `CATALOG.md` §20.
+
+| File | What |
+|---|---|
+| `legacy-hilt-baylan/…-orange-shake-…` | standalone Baylan Skoll: blade on ~4 s, off |
+| `legacy-hilt-baylan/…-orange-ign-…` | two ignite cycles: the 0.673 s orange wipe twice |
+| `legacy-hilt-baylan/…-orange-clash-…` | five single clashes: dark frame, (51,51,0) flash, orange |
+| `legacy-hilt-quigon/…-green-shake-…` | Qui-Gon Jinn: blade on ~8 s, off |
+| `legacy-hilt-quigon/…-green-ign-…` | two ignite cycles: the 0.311 s wipe twice |
+| `legacy-hilt-quigon/…-green-clash-…` | clashes attempted, none registered (this unit's motion sensor is faulty): a 12 s steady burn |
