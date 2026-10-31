@@ -12,7 +12,7 @@ audio) — only what crosses the wire to the blade and what the blade does with 
 > **Capture basis:** Savi's Workshop hilts across all 8 kyber colors, plus a
 > growing set of Legacy character hilts (Cal Kestis, Mace Windu, Kanan, Devon,
 > both Maul staff halves, Obi-Wan, Qui-Gon, Rey, Vader, Shin Hati, Baylan Skoll,
-> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano (Rebels — Black Inlay, main + shoto), Plo Koon, and the "Arresting the Chancellor"
+> Master Sol, Kylo Ren, The Ren, Ezra's Second (Ezra Bridger), Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano (Rebels — Black Inlay, main + shoto), Plo Koon, Gungi, Darth Tyranus, and the "Arresting the Chancellor"
 > LE set — Kit Fisto, Saesee Tiin, Agen Kolar). Per-hilt bytes and timings live in
 > [`data/hilt-timings.csv`](data/hilt-timings.csv).
 
@@ -102,7 +102,8 @@ rendering yellow. Rey's yellow at idx 11 is a different index than Savi kyber ye
 (`0xA3` = idx 3): a per-character slot, not a raw color code. **Ezra's Second (Ezra
 Bridger's second saber) = Savi-family idx 12 (`0xAC`)**, rendering green — not the Legacy
 idx-6 green (`0xB6`) that Qui-Gon, Kit Fisto and Saesee Tiin use. **Plo Koon = Savi-family idx 6
-(`0xA6`)**, rendering blue — the same bytes Cal Kestis and Master Sol use for their blue states.
+(`0xA6`)**, rendering blue — the same bytes Cal Kestis and Master Sol use for their blue states. **Gungi =
+Savi-family idx 4 (`0xA4`)**, rendering green — the same bytes Ahsoka Tano (TCW) uses for its green state.
 
 ### Color low-nibble table — Legacy family (`0xBX`)
 
@@ -118,7 +119,7 @@ different hilts.
 | `0xB4` | Red (Cal Kestis variant) | Cal Kestis |
 | `0xB5` | White | Ahsoka Tano (Rebels — Black Inlay, main + shoto); Cal Kestis (one stop of its colour cycle) |
 | `0xB6` | Green | Qui-Gon Jinn, Kit Fisto, Saesee Tiin |
-| `0xB7` | Red (clean, no flicker) | Darth Vader, Darth Sidious |
+| `0xB7` | Red (clean, no flicker) | Darth Vader, Darth Sidious, Darth Tyranus |
 | `0xB8` | "Blood red" (deeper crimson) | Maul (both staff halves); The Ren (with `0x6X`/`0x7X` flicker, §14) |
 | `0xB9` | Blue | Obi-Wan Kenobi (2026 release), Ben Solo |
 | `0xBA` | Orange | Shin Hati, Baylan Skoll |
@@ -150,7 +151,7 @@ timing-identical to Qui-Gon; Agen Kolar (idx-2 blue) matches Kanan and Devon. Th
 hilt derives a single color index from the crystal and drives the blade with that
 index's bytes; the character is rendered locally as sound and never reaches the
 blade line. Ben Solo (idx-9 blue) is byte- and timing-identical to Obi-Wan Kenobi, and
-Darth Sidious (idx-7 red) to Darth Vader — two more two-hilt code families, alongside
+Darth Sidious and Darth Tyranus (idx-7 red) to Darth Vader — two more shared code families, alongside
 idx-2 blue and idx-6 green. **A capture is complete per color slot, regardless of which character is
 installed.**
 
@@ -195,7 +196,7 @@ The wire byte is correct; the fold is in the stock blade's rendering.
 This is proven at the electrical level. Tapping the blade's three RGB transistor
 gates directly and measuring the PWM duty each color drives:
 
-**PWM carrier is ~5917–5952 Hz** on a stock RGB blade (confirmed ~5,956 Hz at 10 MHz
+**PWM carrier is ~5917–5972 Hz** on a stock RGB blade (confirmed ~5,956 Hz at 10 MHz
 sampling). Brightness is set by duty cycle, in three discrete tiers:
 
 | Kyber | Hilt byte | Green gate | Red gate | Blue gate | Stock-blade visible |
@@ -285,7 +286,7 @@ visible flash count matches the byte count:
 | Hilt | Clash pattern |
 |------|---------------|
 | Savi (all) | 1 byte per strike |
-| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano Rebels (main + shoto), Plo Koon | 1:1 single |
+| Devon, Kanan, Mace, Obi-Wan, Cal Kestis, Vader, Kit Fisto, Saesee Tiin, Agen Kolar, Skywalker Reforged, Ezra's Second, Ben Solo, Darth Sidious, Leia Organa, Ahsoka Tano Rebels (main + shoto), Plo Koon, Gungi, Darth Tyranus | 1:1 single |
 | **Maul staff LONG halves** | **Cycling (1, 3, 1, 4), period 4, repeats indefinitely** — phase does not reset per ignition |
 | **Maul staff SHORT half** | 1:1 single — same bytes as the longs, different clash firmware |
 | **Qui-Gon Jinn** | Random/intermittent double (~30–48%, session-variable), doubles ~135–190 ms apart |
@@ -302,12 +303,12 @@ apart (a tight pair) with later bytes spaced wider.
 a hue shift while the segments stay fully on. On the Legacy hilts the pulse depends
 on the color index. Blue and green hilts flash **Red+Green full with Blue off** —
 a blue hilt (Ben Solo idx 9, Leia Organa idx 2, Plo Koon Savi-family idx 6) drops its own gate for the flash, a green hilt (Ezra's
-Second idx 12, Kit Fisto, Saesee Tiin) keeps green and adds full red — electrically
+Second idx 12, Gungi idx 4, Kit Fisto, Saesee Tiin) keeps green and adds full red — electrically
 yellow; at the bench it read as **white** on Ben Solo and Leia Organa, **yellow** on Plo Koon's blue
-(12 of 12 strikes), and **yellow** on Ezra's green. The white hilts (Ahsoka Tano Rebels, idx 5) get the same drive — blue off, red + green
+(12 of 12 strikes), and **yellow** on Ezra's and Gungi's green. The white hilts (Ahsoka Tano Rebels, idx 5) get the same drive — blue off, red + green
 full over a 44/44/44 white base — and there it reads plainly **yellow**, which is the cleanest evidence
 that the "white" flash on a blue blade is the eye blending the blue base with a yellow pulse. Red hilts
-(Vader and Sidious, idx 7) keep their red gate on and **add Green at 25% duty**
+(Vader, Sidious and Tyranus, idx 7) keep their red gate on and **add Green at 25% duty**
 for 33–80 ms — a lower-energy yellow-amber flash, seen as yellow at the bench, not
 white. So the flash is built relative to the steady color, not one fixed drive. On the Savi crystals the added color is per-crystal-slot specific (a
 firmware lookup per index), which gives a useful discriminator: **teal (idx 5) shows
@@ -431,7 +432,7 @@ capturing: **four blade-segment enable lines** (LED groups, hilt-end to tip) and
 **three RGB transistor gates** (one per color channel). Capturing DATA + 4 segments +
 3 gates together is what produced the render model in §5 and the timing model below.
 
-**Gate PWM.** Each active color gate drives PWM at ~5917–5952 Hz on a stock RGB
+**Gate PWM.** Each active color gate drives PWM at ~5917–5972 Hz on a stock RGB
 blade. (A modified-firmware blade — such as the LE set's keyed orange blade, which
 unlocks orange — drives a faster ~15.7 kHz gate carrier; the carrier is a blade-
 firmware property.) When inactive, a gate idles LOW; brief simultaneous pulses on all
@@ -512,9 +513,11 @@ ignition, extinguish-delay, extinguish, and refresh cadence — are in
   catalog set (4/4). On a stock blade the extinguish looks normal: each segment dims then
   goes out, tip first — the same stepped segment fade other hilts show. **Plo Koon** does
   the same on Savi-family idx 6: steady `0xA6`, extinguish `0x40` on 4/4 arcs, where Cal Kestis
-  and Master Sol extinguish their `0xA6` blue with `0x46`. So the `0x40` extinguish is shared by
-  two hilts on two different indexes, not a one-off. Both close every arc with a single `0x80`.
-  Plo Koon's blade retracts blue — red and green stay off after the `0x40`.
+  and Master Sol extinguish their `0xA6` blue with `0x46`. **Gungi** does
+  the same on Savi-family idx 4: steady `0xA4`, extinguish `0x40` on 4/4 arcs, where Ahsoka Tano (TCW)
+  extinguishes its `0xA4` green with `0x44`. So the `0x40` extinguish is shared by three hilts on three
+  different indexes, not a one-off. All three close every arc with a single `0x80`, and all three retract
+  in their own colour — Plo Koon blue, Ezra's Second and Gungi green.
 - **Baylan blade-detection lockout.** The Baylan hilt refuses to drive the protocol
   at all when paired with a non-original blade — the wire stays essentially silent.
   With its own keyed blade it runs normally. This is hilt-side blade detection gating

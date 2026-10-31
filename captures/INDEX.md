@@ -1,6 +1,6 @@
 # Capture Index
 
-307 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+321 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -400,6 +400,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-ezras-second-idle-200kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-idle-200kHz-2026-09-22.dsl) | 200kHz | 2026-09-22 |
 | [`legacy-ezras-second-steadyburn-100kHz-2026-09-22.dsl`](legacy/ezras-second/legacy-ezras-second-steadyburn-100kHz-2026-09-22.dsl) | 100kHz | 2026-09-22 |
 
+### Gungi  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-gungi-8ch-ignite-clash-ext-200kHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-8ch-ignite-clash-ext-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-gungi-8ch-ignite-ext-1MHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-8ch-ignite-ext-1MHz-2026-10-31.dsl) | 1MHz | 2026-10-31 |
+| [`legacy-gungi-8ch-ignite-ext-freerun-1MHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-8ch-ignite-ext-freerun-1MHz-2026-10-31.dsl) | 1MHz | 2026-10-31 |
+| [`legacy-gungi-clashcycle-15-200kHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-clashcycle-15-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-gungi-gatepwm-10MHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-gatepwm-10MHz-2026-10-31.dsl) | 10MHz | 2026-10-31 |
+| [`legacy-gungi-idle-200kHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-idle-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-gungi-steadyburn-100kHz-2026-10-31.dsl`](legacy/gungi/legacy-gungi-steadyburn-100kHz-2026-10-31.dsl) | 100kHz | 2026-10-31 |
+
 ### Kanan  ·  4 capture(s)
 
 | Capture file | Rate | Date |
@@ -595,6 +607,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-skywalker-reforged-gatepwm-10MHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-gatepwm-10MHz-2026-09-15.dsl) | 10MHz | 2026-09-15 |
 | [`legacy-skywalker-reforged-idle-200kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-idle-200kHz-2026-09-15.dsl) | 200kHz | 2026-09-15 |
 | [`legacy-skywalker-reforged-steadyburn-100kHz-2026-09-15.dsl`](legacy/skywalker-reforged/legacy-skywalker-reforged-steadyburn-100kHz-2026-09-15.dsl) | 100kHz | 2026-09-15 |
+
+### Tyranus  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-tyranus-8ch-ignite-clash-ext-200kHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-8ch-ignite-clash-ext-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-tyranus-8ch-ignite-ext-1MHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-8ch-ignite-ext-1MHz-2026-10-31.dsl) | 1MHz | 2026-10-31 |
+| [`legacy-tyranus-8ch-ignite-ext-freerun-1MHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-8ch-ignite-ext-freerun-1MHz-2026-10-31.dsl) | 1MHz | 2026-10-31 |
+| [`legacy-tyranus-clashcycle-15-200kHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-clashcycle-15-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-tyranus-gatepwm-10MHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-gatepwm-10MHz-2026-10-31.dsl) | 10MHz | 2026-10-31 |
+| [`legacy-tyranus-idle-200kHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-idle-200kHz-2026-10-31.dsl) | 200kHz | 2026-10-31 |
+| [`legacy-tyranus-steadyburn-100kHz-2026-10-31.dsl`](legacy/tyranus/legacy-tyranus-steadyburn-100kHz-2026-10-31.dsl) | 100kHz | 2026-10-31 |
 
 ### Vader  ·  2 capture(s)
 
