@@ -1,6 +1,6 @@
 # Capture Index
 
-321 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+328 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -474,6 +474,18 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`legacy-leia-gatepwm-10MHz-2026-10-16.dsl`](legacy/leia/legacy-leia-gatepwm-10MHz-2026-10-16.dsl) | 10MHz | 2026-10-16 |
 | [`legacy-leia-idle-200kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-idle-200kHz-2026-10-16.dsl) | 200kHz | 2026-10-16 |
 | [`legacy-leia-steadyburn-100kHz-2026-10-16.dsl`](legacy/leia/legacy-leia-steadyburn-100kHz-2026-10-16.dsl) | 100kHz | 2026-10-16 |
+
+### Luminara  ·  7 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`legacy-luminara-8ch-ignite-clash-ext-200kHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-8ch-ignite-clash-ext-200kHz-2026-11-20.dsl) | 200kHz | 2026-11-20 |
+| [`legacy-luminara-8ch-ignite-ext-1MHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-8ch-ignite-ext-1MHz-2026-11-20.dsl) | 1MHz | 2026-11-20 |
+| [`legacy-luminara-8ch-ignite-ext-freerun-1MHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-8ch-ignite-ext-freerun-1MHz-2026-11-20.dsl) | 1MHz | 2026-11-20 |
+| [`legacy-luminara-clashcycle-15-200kHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-clashcycle-15-200kHz-2026-11-20.dsl) | 200kHz | 2026-11-20 |
+| [`legacy-luminara-gatepwm-10MHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-gatepwm-10MHz-2026-11-20.dsl) | 10MHz | 2026-11-20 |
+| [`legacy-luminara-idle-200kHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-idle-200kHz-2026-11-20.dsl) | 200kHz | 2026-11-20 |
+| [`legacy-luminara-steadyburn-100kHz-2026-11-20.dsl`](legacy/luminara/legacy-luminara-steadyburn-100kHz-2026-11-20.dsl) | 100kHz | 2026-11-20 |
 
 ### Mace  ·  6 capture(s)
 
