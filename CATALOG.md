@@ -1075,6 +1075,8 @@ The question: does the hilt know how long the blade is, and if so, how and what 
 - **The twist bolt does not change.** 10 bolts on the 26", all byte-identical to each other and to the 8
   bolts in the 31" green twist take: the head (G100, R127, B0) steps through LEDs 0, 10, 20, 31, 42, 53,
   then fades at LED 54, about 40 ms a frame. The hilt sends the head past the end of the shorter strip.
+  At the bench the blade stays green while the yellow bolt runs up it all the way to the tip; it looks
+  like a shorter version of the 31".
 - **The stab moves.** On the 31" the stab is a red tip at LED 54 with a yellow band on LEDs 49–53
   (§18.2). On the 26" the hilt draws the red tip at **LED 45** and the yellow band on **LEDs 40–44**, and
   leaves LEDs 46–54 at the burn colour. Identical on 4 of 4 stabs; the 31" was re-decoded with the same
