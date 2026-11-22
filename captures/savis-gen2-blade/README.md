@@ -95,3 +95,20 @@ decode the bytes with `tools/decode_dsl.py -c 1` and the blade's LED frames from
 | `legacy-hilt-quigon/…-green-shake-…` | Qui-Gon Jinn: blade on ~8 s, off |
 | `legacy-hilt-quigon/…-green-ign-…` | two ignite cycles: the 0.311 s wipe twice |
 | `legacy-hilt-quigon/…-green-clash-…` | clashes attempted, none registered (this unit's motion sensor is faulty): a 12 s steady burn |
+
+## 26" blade — 2026-11-21: green crystal
+
+Same Gen2 hilt, a **26" Gen2 blade** out of its plug on leads to a breadboard (data, V+, ground, plus the
+control-board ground; 10 kΩ data → V+ on the breadboard). All takes **DSView stream mode, 10 MHz, no
+trigger**. **Channel map is reversed from the sets above: CH0 = hilt DATA, CH1 = strip IN1** (CH2 empty).
+Decode CH0 (`tools/led_frames.py --ch 0`). The strip channel carries short glitches (under 200 ns) on this
+rig and drops bits if decoded raw; the hilt-line channel is whole in every take.
+
+| File | What |
+|---|---|
+| `green-26in-blade/…-wake` | off 15 s+ → blade on → off: the handshake with the 26" blade's ID, ignite, burn, extinguish. CH0 only (no strip lead yet) |
+| `green-26in-blade/…-shake` | rig shakedown: on → off, the `0x80` sleep message 9 s later |
+| `green-26in-blade/…-stab` | wake, ignite, one clash, four stabs: red tip at LED 45 |
+| `green-26in-blade/…-twist` (50 s) | about 28 twist attempts: 10 bolts, the rest clashes |
+
+Findings: `CATALOG.md` §21.

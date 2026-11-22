@@ -720,7 +720,7 @@ takes, all 10 MHz, every one byte-identical), from the moment the blade gets V+:
 | +30 ms | a sub-ms blip only | one blank 60-LED frame | the blade clears its own strip on boot (strip-only; +29 ms in five 10 MHz power-up takes, §18.4) |
 | +216 ms | **query = the legacy `0x15` byte**: two 17.0 ms LOW preambles, then the eight bits `0001 0101` in the §1 LOW widths (2.4 ms = 0, 1.2 ms = 1), pulse-identical to the `0x15` the hilt sends a Gen1 blade (§15) through bit 7 | nothing | |
 | bit 8 | the final 1.2 ms LOW is **held LOW for 12.5 ms**, then HIGH 12.3 ms, LOW 12.2 ms | **one blank 60-LED frame** 6.15 ms into the held LOW (2 takes at 10 MHz) | the blade has recognised `0x15`; who sinks the line during the 12.5 ms hold is not measurable with a logic analyzer alone (most likely the blade — see note) |
-| +331 ms | **answer**: 1 ms / 2 ms pulse train, 15 intervals `2 2 2 2 1 2 1 1 2 1 1 1 2 2 1` | same | originates on the blade side; identical every time — a fixed blade-ID code |
+| +331 ms | **answer**: 1 ms / 2 ms pulse train, 15 intervals `2 2 2 2 1 2 1 1 2 1 1 1 2 2 1` | same | originates on the blade side; identical every time for one blade — a fixed blade-ID code. The 26" blade answers with a different code (§21) |
 | +355 ms → | idles LOW | | LED-frame mode from here on |
 
 With a Gen1 blade the same `0x15` ends with a plain 1.2 ms bit 8, the line idles HIGH, and the
@@ -1049,3 +1049,51 @@ show orange at all?
 Savi's hilt refuses the crystal inside the hilt after the handshake and never asks the blade to ignite
 (§18.4). A Legacy hilt that is orange speaks the old byte language to the blade, and the blade lights
 orange.
+
+## 21. Savi's Workshop Gen2 — the 26" blade: the hilt knows the length and uses it for the stab only
+
+Everything in §16–§19 was measured on the 31" Gen2 blade. This is the same Gen2 hilt with a **26" Gen2
+blade** and a green crystal, 2026-11-21. Stream 10 MHz, no trigger. **The channel map is reversed from the
+31" sets: CH0 = hilt DATA, CH1 = strip IN1.** Decode CH0. Captures:
+[`green-26in-blade/`](captures/savis-gen2-blade/green-26in-blade/).
+
+The question: does the hilt know how long the blade is, and if so, how and what does it do with it?
+
+- **The 26" blade answers the `0x15` handshake (§16.2) with a different ID.** Same 15 intervals of 1 ms
+  or 2 ms, same acknowledge timing (LOW 12.45 / HIGH 12.18 / LOW 12.16 ms), different pattern. Seen in every
+  26" take that includes a wake (5 of 5); the 31" ID was re-decoded the same day with the same script.
+
+  | Blade | ID (1 = ~1 ms, 2 = ~2 ms) |
+  |---|---|
+  | 31" | `2 2 2 2 1 2 1 1 2 1 1 1 2 2 1` |
+  | 26" | `2 2 1 2 2 2 1 1 2 1 2 1 1 2 1` |
+
+  They differ at intervals 3, 5, 11 and 13.
+- **Ignite, burn, clash and extinguish do not change.** The hilt still sends 60-LED frames with 55 lit
+  (LEDs 0–54) and 5 off. The first 30 frames of a green wake are byte-identical to the 31" green wake
+  (§18.3). Clash is the same all-dark frame followed by a uniform (G26, R30, B0) flash over all 55.
+- **The twist bolt does not change.** 10 bolts on the 26", all byte-identical to each other and to the 8
+  bolts in the 31" green twist take: the head (G100, R127, B0) steps through LEDs 0, 10, 20, 31, 42, 53,
+  then fades at LED 54, about 40 ms a frame. The hilt sends the head past the end of the shorter strip.
+- **The stab moves.** On the 31" the stab is a red tip at LED 54 with a yellow band on LEDs 49–53
+  (§18.2). On the 26" the hilt draws the red tip at **LED 45** and the yellow band on **LEDs 40–44**, and
+  leaves LEDs 46–54 at the burn colour. Identical on 4 of 4 stabs; the 31" was re-decoded with the same
+  script (3 of 3).
+- **The 26" strip has 46 LEDs per side** (counted on the opened blade), so LED 45 is the physical tip. At
+  the bench the stab looks the same as on the 31": a red LED at the tip, a yellow tail under it, the rest
+  of the blade green.
+- **The blade does not rescale anything.** Every frame on the hilt line appears unchanged on the strip
+  input. Frame LEDs 46–54 have no LED to land on. (On this rig the strip-input channel picks up short
+  glitches under 200 ns; with those removed, every hilt frame is byte-identical on the strip in all four
+  two-channel takes. The hilt-line channel is clean: every frame whole in every take.)
+
+**What it means.** The hilt treats the 26" blade as a 46-LED blade for the one effect that is anchored to
+the tip, the stab. Everything that starts at the hilt end (ignite, burn, clash, twist bolt, extinguish) is
+painted over 55 LEDs regardless of the blade, and the extra simply runs off the end of the shorter strip.
+
+**Not settled.**
+- That the ID is what tells the hilt. It is the only thing the blade ever says to the hilt, so it is the
+  obvious candidate, but only a blade emulator playing each ID to the real hilt would prove it.
+- Whether the ID is a length code or a per-blade serial. One blade of each length has been captured.
+- Other crystals on the 26". Only green was captured; the two-cycle ignite, hands-off burn, colour-cycle
+  and idle takes of the standard set were not taken on this blade.

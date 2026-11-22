@@ -1,6 +1,6 @@
 # Capture Index
 
-328 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
+332 firsthand `.dsl` captures, all recorded on the bench with stock Galaxy's Edge
 blades. Open them in [DSView](https://www.dreamsourcelab.com/), or decode with
 [`tools/decode_dsl.py`](../tools/decode_dsl.py). Protocol details are in
 [`CATALOG.md`](../CATALOG.md); per-hilt bytes and timings in
@@ -170,6 +170,15 @@ Files are named `<family>-<hilt>-<action>-<rate>-<date>.dsl`. Actions include
 | [`savis-gen2-blade-green-stab-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-stab-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
 | [`savis-gen2-blade-green-twist-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-twist-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
 | [`savis-gen2-blade-green-wake-10MHz-2026-10-21.dsl`](savis-gen2-blade/green/savis-gen2-blade-green-wake-10MHz-2026-10-21.dsl) | 10MHz | 2026-10-21 |
+
+### Gen2 hilt → Gen2 blade, Green 26In Blade  ·  4 capture(s)
+
+| Capture file | Rate | Date |
+|---|---|---|
+| [`savis-gen2-blade26-green-shake-10MHz-2026-11-21.dsl`](savis-gen2-blade/green-26in-blade/savis-gen2-blade26-green-shake-10MHz-2026-11-21.dsl) | 10MHz | 2026-11-21 |
+| [`savis-gen2-blade26-green-stab-10MHz-2026-11-21.dsl`](savis-gen2-blade/green-26in-blade/savis-gen2-blade26-green-stab-10MHz-2026-11-21.dsl) | 10MHz | 2026-11-21 |
+| [`savis-gen2-blade26-green-twist-10MHz-2026-11-21.dsl`](savis-gen2-blade/green-26in-blade/savis-gen2-blade26-green-twist-10MHz-2026-11-21.dsl) | 10MHz | 2026-11-21 |
+| [`savis-gen2-blade26-green-wake-10MHz-2026-11-21.dsl`](savis-gen2-blade/green-26in-blade/savis-gen2-blade26-green-wake-10MHz-2026-11-21.dsl) | 10MHz | 2026-11-21 |
 
 ### Gen2 hilt → Gen2 blade, Kylo Cracked  ·  11 capture(s)
 
